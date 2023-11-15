@@ -1,0 +1,50 @@
+<nav
+	class="navbar navbar-expand-xl navbar-dark fixed-top text-center"
+	style="background-color: var(--secondary-bg-color)"
+>
+	<div class="container-fluid">
+		<a
+			class="navbar-brand fs-4 text-reset text-decoration-none fw-bold"
+			href="#"
+			style="margin-left: 30px"
+			>{{ logoName }}</a
+		>
+
+		<button
+			class="navbar-toggler mx-4"
+			type="button"
+			data-bs-toggle="collapse"
+			data-bs-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent"
+			aria-expanded="false"
+			aria-label="Toggle navigation"
+		>
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div
+			class="collapse navbar-collapse justify-content-end mt-2"
+			id="navbarSupportedContent"
+			style="padding-bottom: 8px"
+		>
+			<ul class="navbar-nav">
+				<li class="nav-item" *ngFor="let item of navbarElements" routerLinkActive="item">
+					<a
+						class="nav-link"
+						id="{{ item.link }}"
+						aria-current="page"
+						href="{{ item.link }}"
+						[class.active]="item.link === currentLink"
+						(click)="onClick(item.link)"
+					>
+						{{ item.name }}
+					</a>
+				</li>
+			</ul>
+			<a routerLink="/register">
+				<button class="btn rounded-pill signup-btn" type="button">
+					{{ signUp }}
+				</button></a
+			>
+		</div>
+	</div>
+</nav>

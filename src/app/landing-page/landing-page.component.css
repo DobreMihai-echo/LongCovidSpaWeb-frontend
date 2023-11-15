@@ -1,0 +1,84 @@
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 20px;
+	height: 92.5vh;
+}
+
+.left-section {
+	width: 50%;
+	padding: 20px;
+	color: var(--text-white-color);
+}
+
+.right-section {
+	flex-shrink: 0;
+}
+
+.text {
+	font-size: 36px;
+	font-weight: bold;
+}
+
+.description {
+	font-size: 18px;
+	margin-top: 20px;
+}
+
+.action-button {
+	margin-top: 20px;
+	background-color: #ff5722;
+	color: var(--text-white-color);
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+}
+
+.start-button {
+	background-color: var(--btn-bg-color);
+	color: var(--text-white-color);
+	border: none;
+	width: 120px;
+	height: 47px;
+	cursor: pointer;
+	margin-top: 20px;
+}
+
+.start-button:focus {
+	color: var(--text-white-color);
+	border: 1px solid var(--btn-bg-color);
+}
+
+.image img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* Icons */
+.circle_parent {
+	font-size: 40px;
+}
+.arrow_child {
+	position: absolute;
+	font-size: 20px;
+	left: 10px;
+	bottom: 3px;
+}
+
+@keyframes bounce {
+	0%,
+	100% {
+		transform: translateY(-25%);
+		animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+	}
+	50% {
+		transform: none;
+		animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+	}
+}
+.animate-bounce {
+	animation: bounce 1s infinite;
+	position: relative;
+	top: -30px;
+}

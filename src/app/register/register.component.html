@@ -1,0 +1,87 @@
+<app-general-layout>
+	<div class="my-5">
+		<p class="text-dark text-center fs-3 fw-bold">Create Account</p>
+		<form class="text-center p-5">
+			<div class="d-flex gap-5">
+				<input
+					type="text"
+					id="defaultRegisterFormFName"
+					class="form-control mb-4"
+					placeholder="First Name"
+					required
+				/>
+
+				<input
+					type="text"
+					id="defaultRegisterFormLName"
+					class="form-control mb-4"
+					placeholder="Last Name"
+					required
+				/>
+			</div>
+
+			<input
+				type="text"
+				id="defaultRegisterFormUserName"
+				class="form-control mb-4"
+				placeholder="Username"
+				required
+			/>
+
+			<input
+				type="number"
+				id="defaultRegisterFormPhone"
+				class="form-control mb-4"
+				minlength="10"
+				maxlength="10"
+				placeholder="Phone"
+			/>
+
+			<input
+				type="email"
+				id="defaultLoginFormEmail"
+				class="form-control mb-4"
+				placeholder="E-mail"
+				required
+			/>
+
+			<input
+				type="password"
+				id="defaultLoginFormPassword"
+				class="form-control mb-4"
+				placeholder="Password"
+				required
+			/>
+
+			<input
+				type="password"
+				id="defaultLoginFormConfirmPassword"
+				class="form-control mb-4"
+				placeholder="Confirm Password"
+				required
+			/>
+
+			<button
+				color="info"
+				block="true"
+				class="btn btn-primary my-4 form-control"
+				style="background-color: var(--btn-bg-color)"
+				type="submit"
+			>
+				Create Account
+			</button>
+
+			<div class="d-flex justify-content-between">
+				<div style="color: var(--text-grey-color)">
+					Already have an account?
+					<a
+						routerLink="/login"
+						class="text-decoration-none"
+						style="color: var(--secondary-bg-color)"
+						>Login</a
+					>
+				</div>
+			</div>
+		</form>
+	</div>
+</app-general-layout>

@@ -1,0 +1,32 @@
+.description {
+	font-size: 18px;
+	margin-top: 20px;
+}
+
+.card {
+	position: relative;
+	height: 320px;
+	overflow: hidden;
+	transition: background-position 0.5s, transform 0.5s;
+}
+
+.card:hover {
+	transform: translateY(-10px);
+	background: var(--btn-bg-color);
+	transition: transform 0.5s, background 0.7s;
+}
+
+.card:hover .card-title {
+	color: var(--text-white-color);
+	transition: color 0.4s;
+}
+
+.card:hover .card-text {
+	color: var(--text-white-color) !important;
+	transition: color 0.4s;
+}
+
+.card:hover .fa-icon {
+	color: var(--text-white-color) !important;
+	transition: color 0.4s;
+}

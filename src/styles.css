@@ -1,0 +1,17 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+/* @import '~@angular/material/prebuilt-themes/indigo-pink.css'; */
+
+:root {
+	--primary: hsl(0, 100%, 50%);
+	--main-bg-color: hsl(213, 68%, 15%);
+	--secondary-bg-color: hsl(221, 58%, 20%);
+	--btn-bg-color: hsl(243, 100%, 69%);
+	--text-white-color: hsl(0, 0%, 100%);
+	--text-grey-color: hsl(0, 0%, 39%);
+	--text-dark-color: hsl(0, 0%, 0%);
+}
+
+body {
+	background: var(--secondary-bg-color);
+	color: var(--text-white-color);
+}

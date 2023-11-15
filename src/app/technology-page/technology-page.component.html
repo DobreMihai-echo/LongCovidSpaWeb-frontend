@@ -1,0 +1,58 @@
+<div id="technology" class="about pt-4 pb-5">
+	<section class="technology__section mt-5">
+		<div class="text-center pb-3">
+			<h1>Technology</h1>
+			<div class="swiper mySwiper w-75">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<p class="description w-50 row offset-3">
+							A wearable device, the data from the sensors is read out in an open format
+							way and presented in a way the doctor/researcher can understand and
+							eventually take further into other patient management software. <br />The
+							data belongs to the patient and is available on their
+							<span>
+								<a
+									href="https://digital-strategy.ec.europa.eu/en/policies/electronic-health-records"
+									class="text-white"
+									target="_blank"
+									>electronic health data record.</a
+								></span
+							>
+						</p>
+					</div>
+					<div class="swiper-slide">
+						<p class="description w-50 row offset-3">
+							Measuring as many life parameters of a patient with a wearable device to get
+							insights into their health/disease. <br />Our project started to get
+							insights in what was going on in LongCovid patients.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Cards -->
+		<div class="d-flex justify-content-evenly mt-4">
+			<div class="row w-75">
+				<div
+					class="col-12 col-md-10 col-lg-7 col-xl-9 col-xxl-3"
+					*ngFor="let tech of techs"
+				>
+					<div class="card rounded-5 mb-4" style="height: 320px">
+						<fa-icon
+							[icon]="tech.icons"
+							class="circle_parent px-4 py-4 position-absolute fa-7x fa-icon"
+							style="color: var(--btn-bg-color)"
+						></fa-icon>
+						<div class="card-body pt-5 pb-4 px-4 mt-5">
+							<h5 class="card-title text-start fs-4 fw-bold">{{ tech.sensor }}</h5>
+							<p class="card-text text-start text-muted">
+								{{ tech.description }}
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>

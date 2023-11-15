@@ -1,0 +1,132 @@
+.slide-container {
+	max-width: 1120px;
+	width: 100%;
+	padding: 40px 0;
+}
+.swiper-pagination {
+	color: white;
+}
+
+.slide-content {
+	margin: 0 40px;
+	overflow: hidden;
+	border-radius: 25px;
+}
+
+.image-content,
+.card-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 10px 14px;
+}
+
+.image-content {
+	padding: 25px 0;
+}
+
+.overlay {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background-color: var(--btn-bg-color);
+	border-radius: 25px 25px 0 25px;
+}
+
+.overlay::before,
+.overlay::after {
+	content: '';
+	position: absolute;
+	right: 0;
+	bottom: -40px;
+	height: 40px;
+	width: 40px;
+	background-color: var(--btn-bg-color);
+}
+
+.overlay::after {
+	border-radius: 0 25px 0 0;
+	background-color: var(--text-white-color);
+}
+
+.card-image {
+	position: relative;
+	height: 150px;
+	width: 150px;
+	border-radius: 50%;
+	background-color: var(--text-white-color);
+	padding: 3px;
+}
+.card-image .card-img {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	border-radius: 50%;
+	border: 4px solid var(--btn-bg-color);
+}
+
+.card-content button:hover {
+	color: white !important;
+	background-color: var(--btn-bg-color);
+}
+
+.cards {
+	height: 430px;
+}
+
+.card-name {
+	color: #333;
+}
+.card-description {
+	color: #707070;
+	height: 75px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	transition: all 0.3s ease;
+}
+
+.description {
+	font-size: 18px;
+	margin-top: 20px;
+}
+
+.more-text:hover {
+	overflow: visible;
+	margin: 40px 0;
+	transition: all 0.3s ease;
+}
+
+/* Swiper Module */
+.swiper-navBtn {
+	color: #6e93f7;
+	transition: color 0.3s ease;
+}
+.swiper-navBtn:hover {
+	color: #4070f4;
+}
+.swiper-navBtn::before,
+.swiper-navBtn::after {
+	font-size: 40px;
+}
+
+.swiper-button-next {
+	right: 0;
+}
+
+.swiper-button-prev {
+	left: 0;
+}
+
+@media screen and (max-width: 768px) {
+	.slide-content {
+		margin: 0 10px;
+	}
+	.swiper-navBtn {
+		display: none;
+	}
+}

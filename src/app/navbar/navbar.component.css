@@ -1,0 +1,25 @@
+.navbar-nav li {
+	margin-right: 30px;
+}
+
+.navbar-nav li a {
+	font-size: 18px;
+}
+
+.signup-btn {
+	background-color: var(--btn-bg-color);
+	color: var(--text-white-color);
+	border: none;
+	width: 100px;
+	height: 40px;
+	margin-right: 30px;
+}
+
+.signup-btn:focus {
+	color: #fff;
+	border: 1px solid var(--btn-bg-color);
+}
+
+.nav-link:focus {
+	color: white !important;
+}

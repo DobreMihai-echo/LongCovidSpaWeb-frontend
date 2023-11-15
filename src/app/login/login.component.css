@@ -1,0 +1,5 @@
+label,
+legend,
+fieldset {
+	color: var(--text-dark-color);
+}

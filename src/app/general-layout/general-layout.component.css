@@ -1,0 +1,19 @@
+.image {
+	background: url(/assets/images/intro.png) no-repeat;
+	background-size: cover;
+	width: 550px;
+	height: 400px;
+	position: absolute;
+	top: 300px;
+	bottom: 0;
+	left: 100px;
+}
+
+.right-section {
+	position: absolute;
+	top: 75px;
+	bottom: 0;
+	right: 0;
+	border-radius: 40px 0 0 40px;
+	background: var(--text-white-color);
+}

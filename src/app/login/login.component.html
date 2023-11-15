@@ -1,0 +1,54 @@
+<app-general-layout>
+	<div class="my-5">
+		<p class="text-dark text-center fs-3 fw-bold">Login</p>
+		<form class="text-center p-5">
+			<input
+				type="email"
+				id="defaultLoginFormEmail"
+				class="form-control mb-4"
+				placeholder="E-mail"
+				required
+			/>
+
+			<input
+				type="password"
+				id="defaultLoginFormPassword"
+				class="form-control mb-4"
+				placeholder="Password"
+				required
+			/>
+
+			<button
+				color="info"
+				block="true"
+				class="btn btn-primary my-4 form-control"
+				style="background-color: var(--btn-bg-color)"
+				type="submit"
+			>
+				Log In
+			</button>
+
+			<div class="d-flex justify-content-between">
+				<div style="color: var(--text-grey-color)">
+					Forgot password?
+					<a
+						routerLink=""
+						class="text-decoration-none"
+						style="color: var(--secondary-bg-color)"
+						>Click here</a
+					>
+				</div>
+
+				<p style="color: var(--text-grey-color)">
+					Don't have an account?
+					<a
+						routerLink="/register"
+						class="text-decoration-none"
+						style="color: var(--secondary-bg-color)"
+						>Register</a
+					>
+				</p>
+			</div>
+		</form>
+	</div>
+</app-general-layout>
