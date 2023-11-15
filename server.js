@@ -3,10 +3,13 @@ const path = require('path');
 
 const app = express();
 
-app.use(express.static('./dist/longcovidspaweb-frontend'));
+// Serve only the static files form the dist directory
+app.use(express.static(__dirname + './dist/longcovidspaweb-fronteng'));
 
-app.get('/*', (req, res) =>
-    res.sendFile('index.html', {root: 'dist/angular-heroku/'}),
-);
-
+// Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 8080);
+
+app.get('/*', function(req,res) {
+
+res.sendFile(path.join(__dirname+'./dist/longcovidspaweb-fronteng/index.html'));
+});
