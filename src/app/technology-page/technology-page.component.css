@@ -16,6 +16,10 @@
 	transition: transform 0.5s, background 0.7s;
 }
 
+.card-text {
+	font-size: 15px;
+}
+
 .card:hover .card-title {
 	color: var(--text-white-color);
 	transition: color 0.4s;

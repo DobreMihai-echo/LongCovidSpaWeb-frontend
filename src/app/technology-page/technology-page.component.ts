@@ -83,6 +83,7 @@ export class TechnologyPageComponent {
 	ngOnInit() {
 		var swiper = new Swiper('.mySwiper', {
 			spaceBetween: 30,
+			centerInsufficientSlides: true,
 			centeredSlides: true,
 			autoplay: {
 				delay: 6000,

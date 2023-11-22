@@ -11,7 +11,8 @@ import { AppComponent } from './app.component'
 import { GeneralLayoutComponent } from './general-layout/general-layout.component'
 import { NavbarComponent } from './navbar/navbar.component'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { TechnologyPageComponent } from './technology-page/technology-page.component'
+import { TechnologyPageComponent } from './technology-page/technology-page.component';
+import { FooterPageComponent } from './footer-page/footer-page.component'
 
 @NgModule({
 	declarations: [
@@ -22,6 +23,7 @@ import { TechnologyPageComponent } from './technology-page/technology-page.compo
 		AboutPageComponent,
 		PageNotFoundComponent,
   TechnologyPageComponent,
+  FooterPageComponent,
 	],
 	imports: [
 		BrowserModule,

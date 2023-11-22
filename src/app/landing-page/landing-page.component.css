@@ -7,9 +7,32 @@
 }
 
 .left-section {
-	width: 50%;
-	padding: 20px;
+	width: 100%;
+	padding: 0 20px;
 	color: var(--text-white-color);
+}
+
+@media screen and (max-width: 1200px) {
+	.image img {
+		max-width: 100%;
+	}
+	.left-section {
+		max-width: 100%;
+		padding: 0 20px;
+		color: var(--text-white-color);
+	}
+	.right-section {
+		flex-shrink: 0.4;
+	}
+	.container {
+		height: 85vh;
+	}
+}
+
+@media screen and (max-width: 960px) {
+	.animate-bounce {
+		display: none;
+	}
 }
 
 .right-section {
