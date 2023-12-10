@@ -1,8 +1,9 @@
 <app-general-layout>
 	<div class="my-5">
 		<p class="text-dark text-center fs-3 fw-bold">Login</p>
-		<form class="text-center p-5">
+		<form class="text-center p-5" [formGroup]="loginForm"  (ngSubmit)="login()">
 			<input
+				formControlName="email"
 				type="email"
 				id="defaultLoginFormEmail"
 				class="form-control mb-4"
@@ -11,6 +12,7 @@
 			/>
 
 			<input
+				formControlName="password"
 				type="password"
 				id="defaultLoginFormPassword"
 				class="form-control mb-4"

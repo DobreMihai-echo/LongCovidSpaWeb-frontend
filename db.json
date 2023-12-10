@@ -1,0 +1,31 @@
+{
+  "signupUsersList": [
+    {
+      "id": "1",
+      "firstName": "Mihai",
+      "lastName": "Dobre",
+      "username": "dob",
+      "phoneNumber": "1111111111",
+      "email": "mihaidob@gmail.com",
+      "password": "1234"
+    },
+    {
+      "firstName": "Dob",
+      "lastName": "Mih",
+      "username": "dob",
+      "phoneNumber": 1234567891,
+      "email": "dob@gmail.com",
+      "password": "password",
+      "id": "hHaRU6O"
+    },
+    {
+      "firstName": "Mihai2",
+      "lastName": "Mihai2",
+      "username": "mihai",
+      "phoneNumber": 1111234567,
+      "email": "dobremih2@gmail.com",
+      "password": "password",
+      "id": "QGKy1wn"
+    }
+  ]
+}

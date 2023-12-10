@@ -1,9 +1,10 @@
 <app-general-layout>
 	<div class="my-5">
 		<p class="text-dark text-center fs-3 fw-bold">Create Account</p>
-		<form class="text-center p-5">
+		<form class="text-center p-5" [formGroup]="signUpForm" (ngSubmit)="signUp()">
 			<div class="d-flex gap-5">
 				<input
+					formControlName="firstName"
 					type="text"
 					id="defaultRegisterFormFName"
 					class="form-control mb-4"
@@ -12,6 +13,7 @@
 				/>
 
 				<input
+					formControlName="lastName"
 					type="text"
 					id="defaultRegisterFormLName"
 					class="form-control mb-4"
@@ -21,6 +23,7 @@
 			</div>
 
 			<input
+				formControlName="username"
 				type="text"
 				id="defaultRegisterFormUserName"
 				class="form-control mb-4"
@@ -29,6 +32,7 @@
 			/>
 
 			<input
+				formControlName="phoneNumber"
 				type="number"
 				id="defaultRegisterFormPhone"
 				class="form-control mb-4"
@@ -38,6 +42,7 @@
 			/>
 
 			<input
+				formControlName="email"
 				type="email"
 				id="defaultLoginFormEmail"
 				class="form-control mb-4"
@@ -46,6 +51,7 @@
 			/>
 
 			<input
+				formControlName="password"
 				type="password"
 				id="defaultLoginFormPassword"
 				class="form-control mb-4"

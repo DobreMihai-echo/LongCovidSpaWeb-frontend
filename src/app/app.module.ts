@@ -13,6 +13,8 @@ import { NavbarComponent } from './navbar/navbar.component'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { TechnologyPageComponent } from './technology-page/technology-page.component';
 import { FooterPageComponent } from './footer-page/footer-page.component'
+import { HttpClient, HttpClientModule } from '@angular/common/http'
+import { ReactiveFormsModule } from '@angular/forms'
 
 @NgModule({
 	declarations: [
@@ -22,8 +24,8 @@ import { FooterPageComponent } from './footer-page/footer-page.component'
 		GeneralLayoutComponent,
 		AboutPageComponent,
 		PageNotFoundComponent,
-  TechnologyPageComponent,
-  FooterPageComponent,
+  	TechnologyPageComponent,
+  		FooterPageComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -32,6 +34,8 @@ import { FooterPageComponent } from './footer-page/footer-page.component'
 		MatListModule,
 		NgbModule,
 		FontAwesomeModule,
+		HttpClientModule,
+		ReactiveFormsModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],
