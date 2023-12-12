@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 import { RegisterComponent } from './register/register.component'
 import { TechnologyPageComponent } from './technology-page/technology-page.component'
+import { ViewPatientsComponent } from './view-patients/view-patients.component'
 
 const routes: Routes = [
 	{ path: '', component: LandingPageComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
 	{ path: 'eu', component: EuPageComponent },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'register', component: RegisterComponent },
+	{ path: 'view-patients', component: ViewPatientsComponent },
 	{ path: '**', redirectTo: '', component: PageNotFoundComponent },
 ]
 
@@ -31,4 +33,5 @@ export const routingComponents = [
 	AboutPageComponent,
 	TechnologyPageComponent,
 	PageNotFoundComponent,
+	ViewPatientsComponent,
 ]
