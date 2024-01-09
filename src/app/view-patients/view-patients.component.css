@@ -1,6 +1,5 @@
 .mat-flat-button {
 	border-radius: 30px;
-	/* width: 79px; */
 	height: 30px;
 	flex-shrink: 0;
 }
@@ -9,13 +8,9 @@
 }
 
 .rounded-field {
-	border-radius: 10px; /* Adjust the value to change the roundness */
-	overflow: hidden; /* Ensures the corners are rounded */
-	display: inline-block; /* Ensures the element respects the border-radius */
-}
-
-table {
-	margin: 20px;
+	border-radius: 10px;
+	overflow: hidden;
+	display: inline-block;
 }
 
 th.mat-sort-header-sorted {

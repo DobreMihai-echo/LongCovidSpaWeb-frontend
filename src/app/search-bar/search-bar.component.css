@@ -1,0 +1,33 @@
+.custom-mat-form-field {
+	width: 400px;
+	margin-top: -10px;
+}
+
+.custom-mat-form-field input {
+	font-size: 16px;
+	color: #333;
+	padding: 10px;
+	border: none;
+	outline: none;
+	background-color: #f0f0f0;
+	border-radius: 5px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	padding-right: 30px;
+	background-image: url('../../assets/images/search-icon.png');
+	background-position: right 10px center;
+	background-repeat: no-repeat;
+	background-size: 20px 20px;
+}
+
+.custom-mat-form-field input:focus {
+	box-shadow: 0 0 5px rgba(92, 106, 196, 0.5);
+}
+
+.custom-mat-form-field .mat-icon {
+	color: #888;
+	font-size: 24px;
+}
+
+.custom-mat-form-field button:hover .mat-icon {
+	color: #333;
+}

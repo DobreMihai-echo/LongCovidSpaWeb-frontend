@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
+import { DatePipe } from '@angular/common'
 import { HttpClient, HttpClientModule } from '@angular/common/http'
 import { ReactiveFormsModule } from '@angular/forms'
 import { MatButtonModule } from '@angular/material/button'
@@ -24,7 +25,8 @@ import { GeneralLayoutComponent } from './general-layout/general-layout.componen
 import { NavbarComponent } from './navbar/navbar.component'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 import { TechnologyPageComponent } from './technology-page/technology-page.component'
-import { ViewPatientsComponent } from './view-patients/view-patients.component'
+import { ViewPatientsComponent } from './view-patients/view-patients.component';
+import { SearchBarComponent } from './search-bar/search-bar.component'
 
 @NgModule({
 	declarations: [
@@ -37,6 +39,7 @@ import { ViewPatientsComponent } from './view-patients/view-patients.component'
 		TechnologyPageComponent,
 		FooterPageComponent,
 		ViewPatientsComponent,
+  SearchBarComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -57,8 +60,9 @@ import { ViewPatientsComponent } from './view-patients/view-patients.component'
 		MatSortModule,
 		MatButtonModule,
 		MatMenuModule,
+		DatePipe,
 	],
-	providers: [],
+	providers: [DatePipe],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
