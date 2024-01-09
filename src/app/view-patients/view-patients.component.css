@@ -16,3 +16,8 @@
 th.mat-sort-header-sorted {
 	color: black;
 }
+
+.tabel {
+	width: 80vw;
+	margin: 0 auto;
+}
