@@ -3,9 +3,9 @@
 	"version": "0.0.0",
 	"scripts": {
 		"ng": "ng",
-		"start": "node server.js",
-		"longcovid": "ng serve",
+		"start": "ng serve node --max-old-space-size=8192",
 		"build": "ng build",
+		"build:production": "ng build --configuration=production",
 		"watch": "ng build --watch --configuration development",
 		"test": "ng test",
 		"heroku-postbuild": "ng build --configuration production"
