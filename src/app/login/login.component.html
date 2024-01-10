@@ -3,11 +3,11 @@
 		<p class="text-dark text-center fs-3 fw-bold">Login</p>
 		<form class="text-center p-5" [formGroup]="loginForm"  (ngSubmit)="login()">
 			<input
-				formControlName="email"
-				type="email"
-				id="defaultLoginFormEmail"
+				formControlName="username"
+				type="username"
+				id="defaultLoginFormUsername"
 				class="form-control mb-4"
-				placeholder="E-mail"
+				placeholder="Username"
 				required
 			/>
 
