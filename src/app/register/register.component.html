@@ -1,9 +1,10 @@
 <app-general-layout>
 	<div class="my-5">
 		<p class="text-dark text-center fs-3 fw-bold">Create Account</p>
-		<form class="text-center p-5" [formGroup]="signUpForm" (ngSubmit)="signUp()">
+		<form class="text-center p-5" [formGroup]="form" #localForm="ngForm" (ngSubmit)="signUp()">
 			<div class="d-flex gap-5">
 				<input
+					[class.is-invalid]="localForm.submitted && form.get('firstName')?.invalid"
 					formControlName="firstName"
 					type="text"
 					id="defaultRegisterFormFName"
@@ -11,8 +12,8 @@
 					placeholder="First Name"
 					required
 				/>
-
 				<input
+					[class.is-invalid]="localForm.submitted && form.get('lastName')?.invalid"
 					formControlName="lastName"
 					type="text"
 					id="defaultRegisterFormLName"
@@ -23,6 +24,7 @@
 			</div>
 
 			<input
+				[class.is-invalid]="localForm.submitted && form.get('username')?.invalid"
 				formControlName="username"
 				type="text"
 				id="defaultRegisterFormUserName"
@@ -31,7 +33,7 @@
 				required
 			/>
 
-			<input
+			<input [class.is-invalid]="localForm.submitted && form.get('phone')?.invalid"
 				formControlName="phoneNumber"
 				type="number"
 				id="defaultRegisterFormPhone"
@@ -41,7 +43,7 @@
 				placeholder="Phone"
 			/>
 
-			<input
+			<input [class.is-invalid]="localForm.submitted && form.get('email')?.invalid"
 				formControlName="email"
 				type="email"
 				id="defaultLoginFormEmail"
@@ -50,7 +52,7 @@
 				required
 			/>
 
-			<input
+			<input [class.is-invalid]="localForm.submitted && form.get('password')?.invalid"
 				formControlName="password"
 				type="password"
 				id="defaultLoginFormPassword"
@@ -59,7 +61,7 @@
 				required
 			/>
 
-			<input
+			<input [class.is-invalid]="localForm.submitted && form.get('confirnmPassword')?.invalid"
 				type="password"
 				id="defaultLoginFormConfirmPassword"
 				class="form-control mb-4"
