@@ -14,7 +14,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { TechnologyPageComponent } from './technology-page/technology-page.component';
 import { FooterPageComponent } from './footer-page/footer-page.component'
 import { HttpClient, HttpClientModule } from '@angular/common/http'
-import { ReactiveFormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
 
 @NgModule({
 	declarations: [
@@ -26,6 +28,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 		PageNotFoundComponent,
   	TechnologyPageComponent,
   		FooterPageComponent,
+    SnackbarComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -36,6 +39,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 		FontAwesomeModule,
 		HttpClientModule,
 		ReactiveFormsModule,
+		MatSnackBarModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],
