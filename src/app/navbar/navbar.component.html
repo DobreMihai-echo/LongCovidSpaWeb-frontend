@@ -27,18 +27,20 @@
 			style="padding-bottom: 8px"
 		>
 			<ul class="navbar-nav">
-				<li class="nav-item" *ngFor="let item of navbarElements" routerLinkActive="item">
-					<a
-						class="nav-link"
-						id="{{ item.link }}"
-						aria-current="page"
-						href="{{ item.link }}"
-						[class.active]="item.link === currentLink"
-						(click)="onClick(item.link)"
-					>
-						{{ item.name }}
-					</a>
-				</li>
+				<ng-container *ngFor="let item of navbarElements">
+					<li class="nav-item" routerLinkActive="item" *ngIf="auth.roleMatch(item.roles)">
+						<a
+							class="nav-link"
+							id="{{ item.link }}"
+							aria-current="page"
+							href="{{ item.link }}"
+							[class.active]="item.link === currentLink"
+							(click)="onClick(item.link)"
+						>
+							{{ item.name }}
+						</a>
+					</li>
+			</ng-container>
 			</ul>
 			<a routerLink="/register">
 				<button class="btn rounded-pill signup-btn" type="button">

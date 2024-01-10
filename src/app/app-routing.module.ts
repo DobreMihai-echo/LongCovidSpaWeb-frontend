@@ -7,6 +7,9 @@ import { LoginComponent } from './login/login.component'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 import { RegisterComponent } from './register/register.component'
 import { TechnologyPageComponent } from './technology-page/technology-page.component'
+import { PatientsComponent } from './pages/patients/patients.component'
+import { ForbiddenComponent } from './pages/forbidden/forbidden.component'
+import { PatientDetailsComponent } from './pages/patient-details/patient-details.component'
 
 const routes: Routes = [
 	{ path: '', component: LandingPageComponent },
@@ -15,6 +18,9 @@ const routes: Routes = [
 	{ path: 'eu', component: EuPageComponent },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'register', component: RegisterComponent },
+	{ path: 'patients', component: PatientsComponent},
+	{ path: 'patient-details', component: PatientDetailsComponent},
+	{ path: 'forbidden', component: ForbiddenComponent},
 	{ path: '**', redirectTo: '', component: PageNotFoundComponent },
 ]
 

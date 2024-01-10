@@ -17,6 +17,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http'
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { PatientsComponent } from './pages/patients/patients.component';
+import { PatientDetailsComponent } from './pages/patient-details/patient-details.component';
+import { ForbiddenComponent } from './pages/forbidden/forbidden.component';
 
 @NgModule({
 	declarations: [
@@ -29,6 +32,9 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
   	TechnologyPageComponent,
   		FooterPageComponent,
     SnackbarComponent,
+    PatientsComponent,
+    PatientDetailsComponent,
+    ForbiddenComponent,
 	],
 	imports: [
 		BrowserModule,
