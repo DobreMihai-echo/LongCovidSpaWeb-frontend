@@ -20,6 +20,34 @@
 	border: 1px solid var(--btn-bg-color);
 }
 
+.signin-btn {
+	background-color: var(--btn-si-color);
+	color: var(--text-white-color);
+	border: none;
+	width: 100px;
+	height: 40px;
+	margin-right: 30px;
+}
+
+.signin-btn:focus {
+	color: #fff;
+	border: 1px solid var(--btn-si-color);
+}
+
+.signout-btn {
+	background-color: var(--btn-so-color);
+	color: var(--text-white-color);
+	border: none;
+	width: 100px;
+	height: 40px;
+	margin-right: 30px;
+}
+
+.signout-btn:focus {
+	color: #fff;
+	border: 1px solid var(--btn-so-color);
+}
+
 .nav-link:focus {
 	color: white !important;
 }

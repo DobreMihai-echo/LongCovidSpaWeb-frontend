@@ -42,9 +42,19 @@
 					</li>
 			</ng-container>
 			</ul>
-			<a routerLink="/register">
+			<a *ngIf="!auth.isLoggedIn()" routerLink="/login">
+				<button class="btn rounded-pill signin-btn" type="button">
+					{{ signIn }}
+				</button></a
+			>
+			<a *ngIf="!auth.isLoggedIn()" routerLink="/register">
 				<button class="btn rounded-pill signup-btn" type="button">
 					{{ signUp }}
+				</button></a
+			>
+			<a *ngIf="auth.isLoggedIn()">
+				<button class="btn rounded-pill signout-btn" type="button" (onClick)="signOutUser()">
+					{{ signOut }}
 				</button></a
 			>
 		</div>

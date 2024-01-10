@@ -9,6 +9,8 @@ import { AuthService } from '../services/auth.service'
 export class NavbarComponent {
 	public logoName = 'CovidYouNot'
 	public signUp = 'Sign Up'
+	public signIn = 'Sign In'
+	public signOut = 'Sign Out'
 	public currentLink = '#'
 
 	constructor(public auth:AuthService) {}
@@ -18,12 +20,15 @@ export class NavbarComponent {
 		{ link: '#about', name: 'About Us', roles: [] },
 		{ link: '#technology', name: 'Technology', roles: [] },
 		{ link: '/eu', name: 'EU', roles: [] },
-		{ link: '/login', name: 'Sign In', roles: [] },
 		{ link: '/patients', name: 'Patients', roles: ['ROLE_USER','ROLE_ADMIN']}
 	]
 
 	onClick(link: any): void {
 		this.currentLink = link
+	}
+
+	signOutUser() {
+		this.auth.clear();
 	}
 
 	ngOnInit() {}
