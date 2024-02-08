@@ -37,4 +37,5 @@ export const routingComponents = [
 	AboutPageComponent,
 	TechnologyPageComponent,
 	PageNotFoundComponent,
+  ForbiddenComponent
 ]
