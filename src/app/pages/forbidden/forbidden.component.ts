@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forbidden',
   templateUrl: './forbidden.component.html',
   styleUrls: ['./forbidden.component.css']
 })
-export class ForbiddenComponent {
+export class ForbiddenComponent implements OnInit {
+  constructor(private router: Router) { }
 
+  ngOnInit(): void {
+  }
+
+  redirectToHome(): void {
+    this.router.navigate(['/']);
+  }
 }
