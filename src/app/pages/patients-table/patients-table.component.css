@@ -1,0 +1,130 @@
+.wrapper {
+  position: relative;
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.left-menu {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 200px; /* Adjust width as needed */
+  background-color: var(--secondary-bg-color);
+  list-style: none; /* Remove bullet points */
+  padding: 0; /* Remove default padding */
+  z-index: 1;
+}
+
+.left-menu a {
+  color: white; /* Set anchor text color */
+  text-decoration: none;
+}
+
+.left-menu .logo {
+  text-align: center; /* Center the logo text */
+  font-weight: bold; /* Apply bold font weight */
+  font-size: 30px; /* Apply font size 30 */
+  color: white; /* Set text color */
+  padding: 20px 0; /* Add padding top and bottom */
+}
+
+.left-menu ul {
+  padding: 0;
+}
+
+.left-menu li {
+  display: flex;
+  align-items: center;
+  padding: 10px; /* Add padding to list items */
+  color: white; /* Set text color */
+}
+
+.left-menu mat-icon {
+  margin-right: 10px; /* Add spacing between icon and text */
+}
+
+.top-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px;
+  margin-left: 200px; /* Ensure content doesn't overlap with left menu */
+  background-color: white; /* Set background color to white */
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar {
+  width: 500px; /* Increase width */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  flex: 1; /* Take remaining space */
+}
+
+.search-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.search-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.buttons-container {
+  display: flex;
+  align-items: center;
+}
+
+.button {
+  background: var(--secondary-bg-color); /* Use custom variable for button background color */
+  color: white; /* Set text color to white */
+  border: none;
+  border-radius: 20px; /* Rounded border */
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-left: 10px; /* Add space between elements */
+}
+
+.button:hover {
+  background: var(--secondary-bg-color); /* Darken the background color on hover */
+}
+
+.table-section {
+  margin-top: 20px;
+  margin-left: 200px; /* Ensure content doesn't overlap with left menu */
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.middle-section {
+  background-color: white; /* Set background color to white */
+  padding: 40px;
+  flex: 1;
+  height: auto;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}

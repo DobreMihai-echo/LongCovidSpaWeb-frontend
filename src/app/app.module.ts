@@ -20,6 +20,10 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { PatientsComponent } from './pages/patients/patients.component';
 import { PatientDetailsComponent } from './pages/patient-details/patient-details.component';
 import { ForbiddenComponent } from './pages/forbidden/forbidden.component';
+import { PatientsTableComponent } from './pages/patients-table/patients-table.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatIconModule} from "@angular/material/icon";
+import {MatSortModule} from "@angular/material/sort";
 
 @NgModule({
 	declarations: [
@@ -35,18 +39,22 @@ import { ForbiddenComponent } from './pages/forbidden/forbidden.component';
     PatientsComponent,
     PatientDetailsComponent,
     ForbiddenComponent,
+    PatientsTableComponent,
 	],
-	imports: [
-		BrowserModule,
-		AppRoutingModule,
-		BrowserAnimationsModule,
-		MatListModule,
-		NgbModule,
-		FontAwesomeModule,
-		HttpClientModule,
-		ReactiveFormsModule,
-		MatSnackBarModule,
-	],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatListModule,
+    NgbModule,
+    FontAwesomeModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    MatSnackBarModule,
+    MatTableModule,
+    MatIconModule,
+    MatSortModule,
+  ],
 	providers: [],
 	bootstrap: [AppComponent],
 })
