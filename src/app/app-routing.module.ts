@@ -10,6 +10,7 @@ import { TechnologyPageComponent } from './technology-page/technology-page.compo
 import { PatientsComponent } from './pages/patients/patients.component'
 import { ForbiddenComponent } from './pages/forbidden/forbidden.component'
 import { PatientDetailsComponent } from './pages/patient-details/patient-details.component'
+import {PatientsTableComponent} from "./pages/patients-table/patients-table.component";
 
 const routes: Routes = [
 	{ path: '', component: LandingPageComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
 	{ path: 'login', component: LoginComponent },
 	{ path: 'register', component: RegisterComponent },
 	{ path: 'patients', component: PatientsComponent},
+	{ path: 'patientstable', component: PatientsTableComponent},
 	{ path: 'patient-details', component: PatientDetailsComponent},
 	{ path: 'forbidden', component: ForbiddenComponent},
 	{ path: '**', redirectTo: '', component: PageNotFoundComponent },
