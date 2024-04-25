@@ -1,0 +1,20 @@
+<div class="card" [ngClass]="getCardClass()">
+  <div class="card-header">
+    <div class="card-title">{{ title }}</div>
+    <div class="card-value">{{ value }}</div>
+  </div>
+  <div class="card-body">
+    <ng-container *ngIf="chart === 1">
+      <h1>First</h1>
+    </ng-container>
+    <ng-container *ngIf="chart === 2">
+      <h1>Second</h1>
+    </ng-container>
+    <ng-container *ngIf="chart === 3">
+      <h1>Third</h1>
+    </ng-container>
+    <ng-container *ngIf="chart === 4">
+      <h1>Fourth</h1>
+    </ng-container>
+  </div>
+</div>
