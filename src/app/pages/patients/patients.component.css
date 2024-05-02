@@ -1,0 +1,100 @@
+.wrapper {
+  position: relative;
+}
+
+.dashboard-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  height: 100vh;
+}
+
+.left-menu {
+  width: 200px; /* Adjust the width of the left menu as needed */
+}
+
+.content-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.patient-details-card {
+  background-color: #f2f2f2; /* Light grey background for the patient details card */
+  padding: 50px;
+  flex: 1; /* Allow the card to grow to fill available space */
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+}
+
+.details-card {
+  width: 400px; /* Adjust the width of the card as needed */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  height: 600px;
+}
+
+.patient-photo {
+  font-size: 127px; /* Set the font size to match the icon size */
+  height: 127px;
+  margin-top: 20px;
+  margin-bottom: 20px; /* Add some spacing below the icon */
+}
+
+.patient-name {
+  font-size: 25px; /* Set font size for the patient name */
+  color: #061428;
+  font-weight: bold;
+}
+
+.patient-subtitle {
+  font-size: 18px; /* Set font size for the patient subtitle */
+  color: black;
+}
+
+.patient-history {
+  font-size: 18px; /* Set font size for the patient history */
+  color: black;
+  margin-bottom: 50px;
+}
+
+.patient-info {
+  margin-top: 10px;
+  font-size: 15px; /* Set font size for patient info */
+  color: #1D2366;
+}
+
+.mat-card-content {
+  flex: 1;
+}
+
+.mat-card-actions {
+  margin-top: auto;
+}
+
+.view-history-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.view-history-button:hover {
+  background-color: #0056b3;
+}
+
+.metric-cards-container {
+  margin-left: 200px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 60px;
+  padding: 40px;
+}

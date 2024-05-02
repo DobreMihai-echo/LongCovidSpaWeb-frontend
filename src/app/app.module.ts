@@ -24,23 +24,31 @@ import { PatientsTableComponent } from './pages/patients-table/patients-table.co
 import {MatTableModule} from "@angular/material/table";
 import {MatIconModule} from "@angular/material/icon";
 import {MatSortModule} from "@angular/material/sort";
+import {LeftMenuBarComponent} from "./components/left-menu-bar/left-menu-bar.component";
+import {MatCardModule} from "@angular/material/card";
+import {MatButtonModule} from "@angular/material/button";
+import {MetricCardComponent} from "./components/metric-card/metric-card.component";
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		NavbarComponent,
-		routingComponents,
-		GeneralLayoutComponent,
-		AboutPageComponent,
-		PageNotFoundComponent,
-  	TechnologyPageComponent,
-  		FooterPageComponent,
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    routingComponents,
+    GeneralLayoutComponent,
+    AboutPageComponent,
+    PageNotFoundComponent,
+    TechnologyPageComponent,
+    FooterPageComponent,
     SnackbarComponent,
     PatientsComponent,
     PatientDetailsComponent,
     ForbiddenComponent,
     PatientsTableComponent,
-	],
+    LeftMenuBarComponent,
+    LeftMenuBarComponent,
+    LeftMenuBarComponent,
+    MetricCardComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -54,6 +62,8 @@ import {MatSortModule} from "@angular/material/sort";
     MatTableModule,
     MatIconModule,
     MatSortModule,
+    MatCardModule,
+    MatButtonModule,
   ],
 	providers: [],
 	bootstrap: [AppComponent],

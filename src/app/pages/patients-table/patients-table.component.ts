@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 
 
 export interface Element {
+  id: number;
   position: number;
   name: string;
   birthday: string;
@@ -17,10 +18,10 @@ export interface Element {
 }
 
 const ELEMENT_DATA: Element[] = [
-  { position: 1, name: 'Pacient1', birthday: '01/01/2000', gender: 'Male', height: 180, weight: 80, medicalHistory: 'High Blood Pressure', change: "-2" },
-  { position: 2, name: 'Pacient2', birthday: '01/01/2000', gender: 'F', height: 180, weight: 80, medicalHistory: 'High Blood Pressure', change: "2" },
-  { position: 3, name: 'Pacient3', birthday: '01/01/2000', gender: 'Male', height: 162, weight: 80, medicalHistory: 'High Blood Pressure', change: "-4" },
-  { position: 4, name: 'Pacient4', birthday: '01/01/2000', gender: 'Male', height: 180, weight: 80, medicalHistory: 'High Blood Pressure', change: "-6" },
+  { id: 1, position: 1, name: 'Pacient1', birthday: '01/01/2000', gender: 'Male', height: 180, weight: 80, medicalHistory: 'High Blood Pressure', change: "-2" },
+  { id: 2, position: 2, name: 'Pacient2', birthday: '01/01/2000', gender: 'F', height: 180, weight: 80, medicalHistory: 'High Blood Pressure', change: "2" },
+  { id: 3, position: 3, name: 'Pacient3', birthday: '01/01/2000', gender: 'Male', height: 162, weight: 80, medicalHistory: 'High Blood Pressure', change: "-4" },
+  { id: 4,position: 4, name: 'Pacient4', birthday: '01/01/2000', gender: 'Male', height: 180, weight: 80, medicalHistory: 'High Blood Pressure', change: "-6" },
 ];
 
 @Component({
@@ -44,8 +45,7 @@ export class PatientsTableComponent {
     this.dataSource.sort = this.sort;
   }
 
-  viewPatientDetails(patient: any) {
-    // TODO - This method will need to be implemented.
-    this.router.navigate(['/patients']);
-  }
+  viewPatientDetails(patientId: number) {
+    this.router.navigate(['/patients', patientId], { state: { patientsData: ELEMENT_DATA }});
+    }
 }

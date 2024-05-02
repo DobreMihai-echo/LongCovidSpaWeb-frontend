@@ -1,1 +1,28 @@
-<p>patients works!</p>
+<div class="dashboard-container">
+  <!-- Left Menu -->
+  <app-left-menu-bar class="left-menu"></app-left-menu-bar>
+
+  <div class="content-container">
+    <div class="patient-details-card">
+      <mat-card class="details-card">
+        <mat-card-content>
+            <img src="./assets/images/img.png" alt="Patient Photo" class="patient-photo">
+            <h2 class="patient-name">{{ patientData.name }}</h2>
+            <p class="patient-subtitle">Birthday: {{ patientData.birthday }}</p>
+            <p class="patient-info">Gender: {{ patientData.gender }}</p>
+            <p class="patient-info">Height: {{ patientData.height }}</p>
+            <p class="patient-info">Weight: {{ patientData.weight }}</p>
+        </mat-card-content>
+          <mat-card-actions>
+            <button mat-button class="view-history-button">View History</button>
+          </mat-card-actions>
+      </mat-card>
+      <div class="metric-cards-container">
+        <app-metric-card title="Heart rate" [value]="100" [chart]="1"></app-metric-card>
+        <app-metric-card title="Sleep" [chart]="2"></app-metric-card>
+        <app-metric-card title="Steps" [chart]="3"></app-metric-card>
+        <app-metric-card title="SPO2" [chart]="4"></app-metric-card>
+      </div>
+    </div>
+  </div>
+</div>

@@ -19,7 +19,7 @@ const routes: Routes = [
 	{ path: 'eu', component: EuPageComponent },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'register', component: RegisterComponent },
-	{ path: 'patients', component: PatientsComponent},
+	{ path: 'patients/:id', component: PatientsComponent },
 	{ path: 'patientstable', component: PatientsTableComponent},
 	{ path: 'patient-details', component: PatientDetailsComponent},
 	{ path: 'forbidden', component: ForbiddenComponent},

@@ -1,0 +1,39 @@
+.left-menu {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 200px; /* Adjust width as needed */
+  background-color: var(--secondary-bg-color);
+  list-style: none; /* Remove bullet points */
+  padding: 0; /* Remove default padding */
+  z-index: 1;
+}
+
+.left-menu a {
+  color: white; /* Set anchor text color */
+  text-decoration: none;
+}
+
+.left-menu .logo {
+  text-align: center; /* Center the logo text */
+  font-weight: bold; /* Apply bold font weight */
+  font-size: 30px; /* Apply font size 30 */
+  color: white; /* Set text color */
+  padding: 20px 0; /* Add padding top and bottom */
+}
+
+.left-menu ul {
+  padding: 0;
+}
+
+.left-menu li {
+  display: flex;
+  align-items: center;
+  padding: 10px; /* Add padding to list items */
+  color: white; /* Set text color */
+}
+
+.left-menu mat-icon {
+  margin-right: 10px; /* Add spacing between icon and text */
+}
