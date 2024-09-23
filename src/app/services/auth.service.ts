@@ -8,16 +8,16 @@ import { User } from '../models/appconstants/user.interface';
 export class AuthService {
 
 
-  private baseUrl = "http://34.125.41.225";
+  private baseUrl = "http://localhost:8080";
 
   constructor(private httpClient: HttpClient) { }
 
   public login(loginData: any) {
-    return this.httpClient.post(`${this.baseUrl}/api/auth/login`,loginData);
+    return this.httpClient.post(`${this.baseUrl}/api/auth/signin`,loginData);
   }
 
   public register(registerData: any) {
-    return this.httpClient.post(`${this.baseUrl}/api/auth/register`,registerData);
+    return this.httpClient.post(`${this.baseUrl}/api/auth/signup`,registerData);
   }
 
   public setRoles(roles:[]) {
@@ -72,14 +72,14 @@ export class AuthService {
     if(allowedRoles.length === 0) {
       return true;
     }
-  
+
     if(userRoles != null && userRoles) {
       for(let i=0;i<userRoles.length; i++) {
         for(let j=0;j<allowedRoles.length;j++) {
           if(userRoles[i].authority === allowedRoles[j]) {
             isMatch = true;
             return isMatch;
-          } 
+          }
         }
       }
     }

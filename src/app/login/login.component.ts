@@ -25,29 +25,40 @@ export class LoginComponent {
   }
 
 
-  login(){
+  login() {
     this.auth.login(this.loginForm.value).subscribe(
-      (response:any) => {
-        this.auth.setToken(response.jwtToken);
-        this.auth.setRoles(response.users.authorities)
-        this.auth.setUser(response.users);
-        this.auth.setProfile(response.profilePhoto);
-        this.router.navigate(['/home']);
-        this.matSnackbar.openFromComponent(SnackbarComponent, {
-          data: AppConstants.signinSuccessDetail,
-          panelClass: ['bg-danger'],
-          duration: 5000
-        });
+      (response: any) => {
+        console.log(response)
+        if (response.jwtToken) {
+          this.auth.setToken(response.jwtToken);
+          this.auth.setRoles(response.roles || []);
+          // this.auth.setUser(response.users);
+          // this.auth.setProfile(response.profilePhoto);
+          this.router.navigate(['/home']);
 
+          this.matSnackbar.openFromComponent(SnackbarComponent, {
+            data: AppConstants.signinSuccessDetail,
+            panelClass: ['bg-danger'],
+            duration: 5000
+          });
+        } else {
+          // Handle unexpected response structure
+          this.matSnackbar.openFromComponent(SnackbarComponent, {
+            data: 'Unexpected response structure from server.',
+            panelClass: ['bg-danger'],
+            duration: 5000
+          });
+        }
       },
       (error) => {
+        console.error("Error", error);
         this.matSnackbar.openFromComponent(SnackbarComponent, {
-          data: error ? error : AppConstants.snackbarErrorContent,
+          data: error.error?.message || 'Login failed.',
           panelClass: ['bg-danger'],
           duration: 5000
         });
-        console.log(error)
       }
-    )
+    );
   }
+
 }

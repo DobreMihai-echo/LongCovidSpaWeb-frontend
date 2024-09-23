@@ -14,9 +14,10 @@ export class AppConstants {
 
 	static signupSuccessHeader = "Registration Successful";
 	static signupSuccessDetail = "Your account has been successfully created. A confirmation email has been sent to your email address. Please, verify.";
+  static signupErrorDetail = "You have an problem while auth."
 
     static signinSuccessHeader = "Login Successful";
-	static signinSuccessDetail = "Youhave logged in successfully";
+	static signinSuccessDetail = "You have logged in successfully";
 
 
 	static emailVerifySuccessHeader = "Email Verified";
@@ -38,4 +39,5 @@ export class AppConstants {
 	static notFoundErrorDetail = 'What you are looking for does not exist.';
 
 	static snackbarErrorContent = 'Could not perform the task. Please, try again later.';
+  static signupFillform = 'Please fill in all required fields correctly.'
 }

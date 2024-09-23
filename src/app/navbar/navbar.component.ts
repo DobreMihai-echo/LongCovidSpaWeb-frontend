@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'
 import { AuthService } from '../services/auth.service'
+import { Router } from "@angular/router";
 
 @Component({
 	selector: 'app-navbar',
@@ -13,7 +14,7 @@ export class NavbarComponent {
 	public signOut = 'Sign Out'
 	public currentLink = '#'
 
-	constructor(public auth:AuthService) {}
+	constructor(public auth:AuthService, private router:Router) {}
 
 	public navbarElements: any = [
 		{ link: '#', name: 'Home', roles: [] },
@@ -29,7 +30,8 @@ export class NavbarComponent {
 	}
 
 	signOutUser() {
-		this.auth.clear();
+		this.auth.logout();
+    this.router.navigate(['/home']);
 	}
 
 	ngOnInit() {}
