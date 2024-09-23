@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
+import {MatSort, Sort, MatSortModule} from '@angular/material/sort'
 
 @Component({
   selector: 'app-left-menu-bar',
