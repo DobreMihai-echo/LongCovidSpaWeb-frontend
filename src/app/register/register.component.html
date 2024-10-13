@@ -61,13 +61,14 @@
 				required
 			/>
 
-			<input [class.is-invalid]="localForm.submitted && form.get('confirnmPassword')?.invalid"
-				type="password"
-				id="defaultLoginFormConfirmPassword"
-				class="form-control mb-4"
-				placeholder="Confirm Password"
-				required
-			/>
+      <input [class.is-invalid]="localForm.submitted && form.get('confirmPassword')?.invalid"
+        formControlName="confirmPassword"
+        type="password"
+        id="defaultLoginFormConfirmPassword"
+        class="form-control mb-4"
+        placeholder="Confirm Password"
+        required
+      />
 
 			<button
 				color="info"
