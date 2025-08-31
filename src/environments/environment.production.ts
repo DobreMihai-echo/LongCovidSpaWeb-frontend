@@ -1,4 +1,5 @@
 export const environment = {
     production: true,
-    link: 'http://user-service:8080'
+    url: 'https://long-covid-spa-backend.onrender.com/api',
+    wsUrl: 'https://long-covid-spa-backend.onrender.com/ws'
 };

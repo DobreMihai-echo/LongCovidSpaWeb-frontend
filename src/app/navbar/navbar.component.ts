@@ -22,7 +22,8 @@ export class NavbarComponent {
 		{ link: '#technology', name: 'Technology', roles: [] },
 		{ link: '/eu', name: 'EU', roles: [] },
 		{ link: '/patients', name: 'Patients', roles: ['ROLE_USER','ROLE_ADMIN']},
-		{ link: '/patientstable', name: 'Patientstable', roles: ['ROLE_ADMIN']}
+		{ link: '/patientstable', name: 'Patientstable', roles: ['ROLE_ADMIN']},
+		{ link: '/dashboard', name: 'Dashboard', roles: ['ROLE_MEDIC']}
 	]
 
 	onClick(link: any): void {

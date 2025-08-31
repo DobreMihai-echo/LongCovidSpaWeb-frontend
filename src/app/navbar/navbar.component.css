@@ -51,3 +51,18 @@
 .nav-link:focus {
 	color: white !important;
 }
+
+:root {
+  /* adjust if your navbar is taller/shorter on your theme */
+  --navbar-height: 64px;
+}
+
+/* keep content from hiding under the fixed-top navbar */
+body { padding-top: var(--navbar-height); }
+
+/* ensure the navbar stays above cards/tooltips */
+.navbar.fixed-top { z-index: 1050; }
+
+@media (max-width: 1199.98px) {
+  :root { --navbar-height: 56px; }
+}

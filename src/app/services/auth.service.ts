@@ -1,36 +1,34 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/appconstants/user.interface';
+import { environment } from '../../environments/environments';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-
-  private baseUrl = "http://localhost:8080";
-
   constructor(private httpClient: HttpClient) { }
 
   public login(loginData: any) {
-    return this.httpClient.post(`${this.baseUrl}/api/auth/signin`,loginData);
+    return this.httpClient.post(`${environment.url}/auth/signin`,loginData);
   }
 
   public register(registerData: any) {
-    return this.httpClient.post(`${this.baseUrl}/api/auth/signup`,registerData);
+    return this.httpClient.post(`${environment.url}/auth/signup`,registerData);
   }
 
   public setRoles(roles:[]) {
     localStorage.setItem("roles",JSON.stringify(roles));
   }
 
-  public setUser(user:User) {
-    localStorage.setItem("user",JSON.stringify(user));
+  public setUser(user:string) {
+    localStorage.setItem("user",user);
   }
 
   public getRoles(): [] {
     const userRoles = localStorage.getItem("roles");
-    return userRoles !== null ? JSON.parse(userRoles) : null;
+    return userRoles !== null ? JSON.parse(userRoles) : [];
   }
 
   public setToken(token:string) {
@@ -54,11 +52,7 @@ export class AuthService {
   }
 
   public getUsername() {
-    const user = localStorage.getItem('user');
-    if(user!==null) {
-      return JSON.parse(user).username;
-    }
-    return null;
+    return localStorage.getItem('user');
   }
 
   public logout() {
@@ -76,7 +70,7 @@ export class AuthService {
     if(userRoles != null && userRoles) {
       for(let i=0;i<userRoles.length; i++) {
         for(let j=0;j<allowedRoles.length;j++) {
-          if(userRoles[i].authority === allowedRoles[j]) {
+          if(userRoles[i] === allowedRoles[j]) {
             isMatch = true;
             return isMatch;
           }

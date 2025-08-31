@@ -13,7 +13,7 @@ import { NavbarComponent } from './navbar/navbar.component'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { TechnologyPageComponent } from './technology-page/technology-page.component';
 import { FooterPageComponent } from './footer-page/footer-page.component'
-import { HttpClient, HttpClientModule } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http'
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
@@ -24,6 +24,8 @@ import { PatientsTableComponent } from './pages/patients-table/patients-table.co
 import {MatTableModule} from "@angular/material/table";
 import {MatIconModule} from "@angular/material/icon";
 import {MatSortModule} from "@angular/material/sort";
+import { PatientDashboardComponent } from './pages/patient-dashboard/patient-dashboard.component';
+import { AuthInterceptor } from './auth/auth.interceptor'
 
 @NgModule({
 	declarations: [
@@ -40,6 +42,7 @@ import {MatSortModule} from "@angular/material/sort";
     PatientDetailsComponent,
     ForbiddenComponent,
     PatientsTableComponent,
+    PatientDashboardComponent,
 	],
   imports: [
     BrowserModule,
@@ -55,7 +58,9 @@ import {MatSortModule} from "@angular/material/sort";
     MatIconModule,
     MatSortModule,
   ],
-	providers: [],
+	providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
