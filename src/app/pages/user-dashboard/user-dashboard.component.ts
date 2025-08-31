@@ -6,10 +6,10 @@ import { HealthDataApiService } from 'src/app/services/health.service';
 
 @Component({
   selector: 'app-patient-dashboard',
-  templateUrl: './patient-dashboard.component.html',
-  styleUrls: ['./patient-dashboard.component.css']
+  templateUrl: './user-dashboard.component.html',
+  styleUrls: ['./user-dashboard.component.css']
 })
-export class PatientDashboardComponent implements OnInit, OnDestroy {
+export class UserDashboardComponent implements OnInit, OnDestroy {
   latest?: HealthData;
   lastSync?: Date;
   Math = Math;

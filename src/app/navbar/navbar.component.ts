@@ -23,7 +23,7 @@ export class NavbarComponent {
 		{ link: '/eu', name: 'EU', roles: [] },
 		{ link: '/patients', name: 'Patients', roles: ['ROLE_USER','ROLE_ADMIN']},
 		{ link: '/patientstable', name: 'Patientstable', roles: ['ROLE_ADMIN']},
-		{ link: '/dashboard', name: 'Dashboard', roles: ['ROLE_MEDIC']}
+		{ link: '/dashboard', name: 'Dashboard', roles: ['ROLE_USER']}
 	]
 
 	onClick(link: any): void {

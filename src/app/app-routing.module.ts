@@ -11,7 +11,7 @@ import { PatientsComponent } from './pages/patients/patients.component'
 import { ForbiddenComponent } from './pages/forbidden/forbidden.component'
 import { PatientDetailsComponent } from './pages/patient-details/patient-details.component'
 import {PatientsTableComponent} from "./pages/patients-table/patients-table.component";
-import { PatientDashboardComponent } from './pages/patient-dashboard/patient-dashboard.component'
+import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component'
 import { authGuard } from './auth/auth.guard'
 
 const routes: Routes = [
@@ -22,10 +22,10 @@ const routes: Routes = [
 	{ path: 'login', component: LoginComponent },
 	{ path: 'register', component: RegisterComponent },
 	{ path: 'patients', component: PatientsComponent},
-	{ path: 'patientstable', component: PatientsTableComponent},
-	{ path: 'patient-details', component: PatientDetailsComponent},
+	{ path: 'patientstable', component: PatientsTableComponent , canActivate: [authGuard], data: { roles: ['ROLE_ADMIN'] }},
+	{ path: 'patient-details', component: PatientDetailsComponent , canActivate: [authGuard], data: { roles: ['ROLE_ADMIN'] }},
 	{ path: 'forbidden', component: ForbiddenComponent},
-	{ path: 'dashboard', component: PatientDashboardComponent, canActivate: [authGuard], data: { roles: ['ROLE_MEDIC'] }},
+	{ path: 'dashboard', component: UserDashboardComponent, canActivate: [authGuard], data: { roles: ['ROLE_USER'] }},
 	{ path: '**', redirectTo: '', component: PageNotFoundComponent }
 ]
 
