@@ -24,7 +24,7 @@ import { PatientsTableComponent } from './pages/patients-table/patients-table.co
 import {MatTableModule} from "@angular/material/table";
 import {MatIconModule} from "@angular/material/icon";
 import {MatSortModule} from "@angular/material/sort";
-import { PatientDashboardComponent } from './pages/patient-dashboard/patient-dashboard.component';
+import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
 import { AuthInterceptor } from './auth/auth.interceptor'
 
 @NgModule({
@@ -42,7 +42,7 @@ import { AuthInterceptor } from './auth/auth.interceptor'
     PatientDetailsComponent,
     ForbiddenComponent,
     PatientsTableComponent,
-    PatientDashboardComponent,
+    UserDashboardComponent,
 	],
   imports: [
     BrowserModule,
