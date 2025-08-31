@@ -32,6 +32,7 @@ export class LoginComponent {
         if (response.jwtToken) {
           this.auth.setToken(response.jwtToken);
           this.auth.setRoles(response.roles || []);
+          this.auth.setUser(response.username || []);
           // this.auth.setUser(response.users);
           // this.auth.setProfile(response.profilePhoto);
           this.router.navigate(['/home']);

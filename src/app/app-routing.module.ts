@@ -11,6 +11,8 @@ import { PatientsComponent } from './pages/patients/patients.component'
 import { ForbiddenComponent } from './pages/forbidden/forbidden.component'
 import { PatientDetailsComponent } from './pages/patient-details/patient-details.component'
 import {PatientsTableComponent} from "./pages/patients-table/patients-table.component";
+import { PatientDashboardComponent } from './pages/patient-dashboard/patient-dashboard.component'
+import { authGuard } from './auth/auth.guard'
 
 const routes: Routes = [
 	{ path: '', component: LandingPageComponent },
@@ -23,7 +25,8 @@ const routes: Routes = [
 	{ path: 'patientstable', component: PatientsTableComponent},
 	{ path: 'patient-details', component: PatientDetailsComponent},
 	{ path: 'forbidden', component: ForbiddenComponent},
-	{ path: '**', redirectTo: '', component: PageNotFoundComponent },
+	{ path: 'dashboard', component: PatientDashboardComponent, canActivate: [authGuard], data: { roles: ['ROLE_MEDIC'] }},
+	{ path: '**', redirectTo: '', component: PageNotFoundComponent }
 ]
 
 @NgModule({

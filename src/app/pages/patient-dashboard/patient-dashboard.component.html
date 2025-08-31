@@ -1,0 +1,88 @@
+<app-navbar></app-navbar>
+
+<!-- full-bleed wrapper so Bootstrap containers don't squeeze the content -->
+<div class="bleed">
+  <div class="shell">
+    <!-- no white canvas — transparent on your navy background -->
+    <div class="page">
+
+      <!-- header -->
+      <header class="topbar">
+        <h1 class="title">Patient Dashboard</h1>
+        <div class="meta">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="last-sync">Last sync: {{ lastSync ? (lastSync | date:'shortTime') : '—' }}</span>
+        </div>
+      </header>
+
+      <!-- tabs -->
+      <nav class="tabs" role="tablist" aria-label="Dashboard sections">
+        <button class="tab active" role="tab" aria-selected="true">Overview</button>
+        <button class="tab" role="tab" aria-selected="false" disabled>Trends</button>
+        <button class="tab" role="tab" aria-selected="false" disabled>AI Insights</button>
+      </nav>
+
+      <!-- cards -->
+      <section class="grid">
+        <!-- SpO2 -->
+        <article class="card status" [ngClass]="spo2StatusClass(latest?.spo2)">
+          <div class="card-head">
+            <span class="icon" aria-hidden="true">🩸</span>
+          </div>
+          <div class="metric">
+            <span class="num">{{ latest?.spo2 ?? '—' }}</span><span class="unit">%</span>
+          </div>
+          <div class="label">SpO2</div>
+          <p class="hint" *ngIf="latest?.spo2 !== null && latest?.spo2 !== undefined; else noSpo2">
+            <ng-container [ngSwitch]="spo2StatusClass(latest?.spo2)">
+              <span *ngSwitchCase="'danger'">Immediate attention needed</span>
+              <span *ngSwitchCase="'warning'">Monitor closely</span>
+              <span *ngSwitchDefault>Healthy range</span>
+            </ng-container>
+          </p>
+          <ng-template #noSpo2><p class="hint">No SpO2 data</p></ng-template>
+          <div class="bar"><span [style.width.%]="clamp0to100(latest?.spo2)"></span></div>
+        </article>
+
+        <!-- Heart Rate / HRV -->
+        <article class="card">
+          <div class="card-head">
+            <span class="icon" aria-hidden="true">💚</span>
+          </div>
+          <div class="metric">
+            <span class="num">{{ latest?.heartRateVariability ?? '—' }}</span><span class="unit">bpm</span>
+          </div>
+          <div class="label">Heart Rate</div>
+          <p class="hint">Normal heart rate</p>
+          <div class="bar"><span [style.width.%]="progress(latest?.heartRateVariability, 100)"></span></div>
+        </article>
+
+        <!-- Activity -->
+        <article class="card">
+          <div class="card-head">
+            <span class="icon" aria-hidden="true">👣</span>
+          </div>
+          <div class="metric">
+            <span class="num">{{ latest?.steps ?? 0 }}</span><span class="unit">steps</span>
+          </div>
+          <div class="label">Activity Level</div>
+          <p class="hint">Great activity today!</p>
+          <div class="bar"><span [style.width.%]="progress(latest?.steps, stepsGoal)"></span></div>
+        </article>
+
+        <!-- Sleep Quality (proxy: Body Battery) -->
+        <article class="card">
+          <div class="card-head">
+            <span class="icon" aria-hidden="true">😴</span>
+          </div>
+          <div class="metric">
+            <span class="num">{{ latest?.bodyBattery ?? '—' }}</span><span class="unit">%</span>
+          </div>
+          <div class="label">Sleep Quality</div>
+          <p class="hint">Good sleep quality</p>
+          <div class="bar"><span [style.width.%]="clamp0to100(latest?.bodyBattery)"></span></div>
+        </article>
+      </section>
+    </div>
+  </div>
+</div>

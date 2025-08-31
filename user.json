@@ -1,0 +1,7 @@
+{
+    "api/user": {
+        "username":"myusername",
+        "firstName": "firstName",
+        "lastName": "lastName"
+    }
+}

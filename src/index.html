@@ -36,6 +36,12 @@
 			src="https://kit.fontawesome.com/a7d7be03d4.js"
 			crossorigin="anonymous"
 		></script>
+		<script>
+    window.global = window; // <-- solves "global is not defined"
+    // If you later see "process is not defined" or "Buffer is not defined", uncomment below:
+    // window.process = { env: {} };
+    // window.Buffer = window.Buffer || [];
+  </script>
 	</head>
 	<body class="mat-typography">
 		<app-root></app-root>
