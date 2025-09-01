@@ -1,0 +1,66 @@
+<app-navbar></app-navbar>
+
+<div class="wrap">
+  <h1 class="title">Privacy & Data Controls</h1>
+
+  <!-- Banner -->
+  <div *ngIf="banner" class="banner" [ngClass]="banner.kind">{{ banner.text }}</div>
+
+  <!-- FIRST TIME helper card -->
+  <section *ngIf="isFirstVisit" class="intro card">
+    <h2>Before we start</h2>
+    <ul>
+      <li><strong>We need your permission</strong> to store and process wearable data.</li>
+      <li><strong>AI Insights</strong> is optional; you can turn it on/off anytime.</li>
+      <li>You can later <em>download</em> or <em>delete</em> your data from this page.</li>
+    </ul>
+  </section>
+
+  <!-- CONSENT -->
+  <section id="consent-card" class="card">
+    <h2>Consents</h2>
+    <p class="muted">Control how we process your health data and AI insights.</p>
+
+    <label class="cb">
+      <input type="checkbox" [(ngModel)]="mProcess">
+      <span>Allow processing of my health data (required to use the app)</span>
+    </label>
+
+    <label class="cb">
+      <input type="checkbox" [(ngModel)]="mAi">
+      <span>Enable AI Insights (personalized recommendations)</span>
+    </label>
+
+    <label class="cb">
+      <input type="checkbox" [(ngModel)]="mNotify">
+      <span>Receive notifications (optional)</span>
+    </label>
+
+    <div class="actions">
+      <button class="btn primary" (click)="saveConsent()" [disabled]="saving || !mProcess">
+        {{ saving ? 'Saving…' : 'Save Consent' }}
+      </button>
+      <button class="btn danger outline" (click)="withdrawConsent()" [disabled]="withdrawing || !consent || !!consent?.withdrawnAt">
+        {{ withdrawing ? 'Withdrawing…' : 'Withdraw Consent' }}
+      </button>
+    </div>
+
+    <div class="notice" *ngIf="!mProcess">
+      You must allow processing of health data to use the app features.
+    </div>
+  </section>
+
+  <!-- DOWNLOAD (hidden until consent is granted at least once) -->
+  <section class="card" *ngIf="!isFirstVisit && hasProcessingConsent">
+    <h2>Download My Data</h2>
+    <p class="muted">Get a ZIP archive with your measurements and a human-readable summary.</p>
+    <button class="btn subtle full" (click)="createZip()">Create ZIP</button>
+  </section>
+
+  <!-- DELETE (hidden until consent is granted at least once) -->
+  <section class="card" *ngIf="!isFirstVisit && hasProcessingConsent">
+    <h2>Delete My Account & Data</h2>
+    <p class="muted">This permanently deletes your measurements and account after a short safety window.</p>
+    <button class="btn danger full" (click)="requestDeletion()">Request Deletion</button>
+  </section>
+</div>

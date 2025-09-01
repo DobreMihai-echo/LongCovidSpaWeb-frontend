@@ -26,6 +26,9 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatSortModule} from "@angular/material/sort";
 import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
 import { AuthInterceptor } from './auth/auth.interceptor'
+import { NgChartsModule } from 'ng2-charts';
+import { FormsModule } from '@angular/forms';
+import { PrivacyCenterComponent } from './components/privacy-center/privacy-center.component'; 
 
 @NgModule({
 	declarations: [
@@ -43,6 +46,7 @@ import { AuthInterceptor } from './auth/auth.interceptor'
     ForbiddenComponent,
     PatientsTableComponent,
     UserDashboardComponent,
+    PrivacyCenterComponent,
 	],
   imports: [
     BrowserModule,
@@ -57,6 +61,8 @@ import { AuthInterceptor } from './auth/auth.interceptor'
     MatTableModule,
     MatIconModule,
     MatSortModule,
+    NgChartsModule,
+    FormsModule 
   ],
 	providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
