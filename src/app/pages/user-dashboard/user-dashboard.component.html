@@ -1,38 +1,25 @@
 <app-navbar></app-navbar>
 
-<!-- full-bleed wrapper so Bootstrap containers don't squeeze the content -->
 <div class="bleed">
   <div class="shell">
-    <!-- no white canvas — transparent on your navy background -->
     <div class="page">
-
-      <!-- header -->
       <header class="topbar">
         <h1 class="title">Patient Dashboard</h1>
-        <div class="meta">
-          <span class="dot" aria-hidden="true"></span>
-          <span class="last-sync">Last sync: {{ lastSync ? (lastSync | date:'shortTime') : '—' }}</span>
-        </div>
+        <div class="meta"><span class="dot"></span><span>Last sync: {{ lastSync ? (lastSync | date:'shortTime') : '—' }}</span></div>
       </header>
 
-      <!-- tabs -->
-      <nav class="tabs" role="tablist" aria-label="Dashboard sections">
-        <button class="tab active" role="tab" aria-selected="true">Overview</button>
-        <button class="tab" role="tab" aria-selected="false" disabled>Trends</button>
-        <button class="tab" role="tab" aria-selected="false" disabled>AI Insights</button>
+      <nav class="tabs" role="tablist">
+        <button class="tab" [class.active]="active==='overview'" (click)="setTab('overview')">Overview</button>
+        <button class="tab" [class.active]="active==='trends'" (click)="setTab('trends')">Trends</button>
+        <button class="tab" [class.active]="active==='insights'" (click)="setTab('insights')">AI Insights</button>
       </nav>
 
-      <!-- cards -->
-      <section class="grid">
-        <!-- SpO2 -->
+      <!-- ============== OVERVIEW ============== -->
+      <section *ngIf="active==='overview'" class="grid">
         <article class="card status" [ngClass]="spo2StatusClass(latest?.spo2)">
-          <div class="card-head">
-            <span class="icon" aria-hidden="true">🩸</span>
-          </div>
-          <div class="metric">
-            <span class="num">{{ latest?.spo2 ?? '—' }}</span><span class="unit">%</span>
-          </div>
-          <div class="label">SpO2</div>
+          <div class="card-head"><span class="icon">🩸</span></div>
+          <div class="metric"><span class="num">{{ latest?.spo2 ?? '—' }}</span><span class="unit">%</span></div>
+          <div class="label">SpO₂</div>
           <p class="hint" *ngIf="latest?.spo2 !== null && latest?.spo2 !== undefined; else noSpo2">
             <ng-container [ngSwitch]="spo2StatusClass(latest?.spo2)">
               <span *ngSwitchCase="'danger'">Immediate attention needed</span>
@@ -40,49 +27,207 @@
               <span *ngSwitchDefault>Healthy range</span>
             </ng-container>
           </p>
-          <ng-template #noSpo2><p class="hint">No SpO2 data</p></ng-template>
+          <ng-template #noSpo2><p class="hint">No SpO₂ data</p></ng-template>
           <div class="bar"><span [style.width.%]="clamp0to100(latest?.spo2)"></span></div>
         </article>
 
-        <!-- Heart Rate / HRV -->
         <article class="card">
-          <div class="card-head">
-            <span class="icon" aria-hidden="true">💚</span>
-          </div>
-          <div class="metric">
-            <span class="num">{{ latest?.heartRateVariability ?? '—' }}</span><span class="unit">bpm</span>
-          </div>
+          <div class="card-head"><span class="icon">💚</span></div>
+          <div class="metric"><span class="num">{{ latest?.heartRateVariability ?? '—' }}</span><span class="unit">bpm</span></div>
           <div class="label">Heart Rate</div>
           <p class="hint">Normal heart rate</p>
           <div class="bar"><span [style.width.%]="progress(latest?.heartRateVariability, 100)"></span></div>
         </article>
 
-        <!-- Activity -->
         <article class="card">
-          <div class="card-head">
-            <span class="icon" aria-hidden="true">👣</span>
-          </div>
-          <div class="metric">
-            <span class="num">{{ latest?.steps ?? 0 }}</span><span class="unit">steps</span>
-          </div>
+          <div class="card-head"><span class="icon">👣</span></div>
+          <div class="metric"><span class="num">{{ latest?.steps ?? 0 }}</span><span class="unit">steps</span></div>
           <div class="label">Activity Level</div>
           <p class="hint">Great activity today!</p>
           <div class="bar"><span [style.width.%]="progress(latest?.steps, stepsGoal)"></span></div>
         </article>
 
-        <!-- Sleep Quality (proxy: Body Battery) -->
         <article class="card">
-          <div class="card-head">
-            <span class="icon" aria-hidden="true">😴</span>
-          </div>
-          <div class="metric">
-            <span class="num">{{ latest?.bodyBattery ?? '—' }}</span><span class="unit">%</span>
-          </div>
+          <div class="card-head"><span class="icon">😴</span></div>
+          <div class="metric"><span class="num">{{ latest?.bodyBattery ?? '—' }}</span><span class="unit">%</span></div>
           <div class="label">Sleep Quality</div>
           <p class="hint">Good sleep quality</p>
           <div class="bar"><span [style.width.%]="clamp0to100(latest?.bodyBattery)"></span></div>
         </article>
       </section>
+
+      <!-- ============== TRENDS (plots-first, all KPIs visible) ============== -->
+<section *ngIf="active==='trends'; else trendsBoot">
+  <!-- range + controls -->
+  <div class="filters">
+    <div class="pill-group">
+      <button class="pill" [class.active]="selectedRange==='today'" (click)="onRangeClick('today')">Today</button>
+      <button class="pill" [class.active]="selectedRange==='7d'" (click)="onRangeClick('7d')">Last 7 Days</button>
+      <button class="pill" [class.active]="selectedRange==='30d'" (click)="onRangeClick('30d')">Last 30 Days</button>
+      <button class="pill" [class.active]="selectedRange==='custom'" (click)="selectedRange='custom'">Custom</button>
+      <div class="custom-range" *ngIf="selectedRange==='custom'">
+        <input type="datetime-local" [(ngModel)]="customStart" [ngModelOptions]="{standalone:true}">
+        <input type="datetime-local" [(ngModel)]="customEnd" [ngModelOptions]="{standalone:true}">
+        <button class="btn subtle" (click)="onCustomApply()">Apply</button>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="seg">
+        <button class="seg-btn" [class.active]="chartMode==='line'" (click)="setChartMode('line')">Line</button>
+        <button class="seg-btn" [class.active]="chartMode==='area'" (click)="setChartMode('area')">Area</button>
+        <button class="seg-btn" [class.active]="chartMode==='bar'"  (click)="setChartMode('bar')">Bar</button>
+      </div>
+      <button class="btn export" (click)="exportTrendsReport()">PDF</button>
+    </div>
+  </div>
+
+  <!-- KPI row: always show ALL metrics for the selected range -->
+  <div class="grid kpis">
+    <article class="card kpi">
+      <div class="kpi-title">Avg SpO₂</div>
+      <div class="kpi-value">
+        {{ trendMap.spo2?.average != null ? (trendMap.spo2?.average | number:'1.0-1') : '—' }}
+        <div class="kpi-sub">Variation: {{ trendMap.spo2 ? (trendMap.spo2?.variationPct | number:'1.0-1') : 0 }}%</div>
+      </div>
+    </article>
+    <article class="card kpi">
+      <div class="kpi-title">Avg HRV</div>
+      <div class="kpi-value">
+        {{ trendMap.hrv?.average != null ? (trendMap.hrv?.average | number:'1.0-1') : '—' }}
+        <div class="kpi-sub">Variation: {{ trendMap.hrv ? (trendMap.hrv?.variationPct | number:'1.0-1') : 0 }}%</div>
+      </div>
+    </article>
+    <article class="card kpi">
+      <div class="kpi-title">Avg Sleep*</div>
+      <div class="kpi-value">
+        {{ trendMap.sleep?.average != null ? (trendMap.sleep?.average | number:'1.0-1') : '—' }}
+        <div class="kpi-sub">Variation: {{ trendMap.sleep ? (trendMap.sleep?.variationPct | number:'1.0-1') : 0 }}%</div>
+      </div>
+    </article>
+    <article class="card kpi">
+      <div class="kpi-title">Avg Steps</div>
+      <div class="kpi-value">
+        {{ trendMap.steps?.average != null ? (trendMap.steps?.average | number:'1.0-0') : '—' }}
+        <div class="kpi-sub">Variation: {{ trendMap.steps ? (trendMap.steps?.variationPct | number:'1.0-1') : 0 }}%</div>
+      </div>
+    </article>
+  </div>
+
+  <!-- metric chooser (one big plot) -->
+  <div class="grid metric-chooser">
+    <button class="card metric" [class.active]="selectedMetric==='spo2'" (click)="onMetricClick('spo2')">
+      <div class="metric-name">🩸 SpO₂</div><div class="metric-sub">Oxygen saturation levels</div>
+    </button>
+    <button class="card metric" [class.active]="selectedMetric==='hrv'" (click)="onMetricClick('hrv')">
+      <div class="metric-name">💚 HRV</div><div class="metric-sub">Heart rate variability</div>
+    </button>
+    <button class="card metric" [class.active]="selectedMetric==='sleep'" (click)="onMetricClick('sleep')">
+      <div class="metric-name">😴 Sleep</div><div class="metric-sub">Duration & quality (proxy)</div>
+    </button>
+    <button class="card metric" [class.active]="selectedMetric==='steps'" (click)="onMetricClick('steps')">
+      <div class="metric-name">👣 Activity</div><div class="metric-sub">Steps & movement</div>
+    </button>
+  </div>
+
+  <!-- big focus chart -->
+  <article class="card chart-card">
+    <div class="chart-title">{{ metricLabel(selectedMetric) }} — Trend</div>
+    <div class="legend">
+      <span class="dot ok"></span> Normal
+      <span class="dot warn"></span> Low
+      <span class="dot danger"></span> Critical
+    </div>
+    <div class="chart-area">
+      <canvas
+        baseChart
+        [data]="lineData"
+        [options]="lineOpts"
+        [type]="chartMode==='bar' ? 'bar' : 'line'"
+        #bigChartRef="base-chart"
+      ></canvas>
+    </div>
+    <div class="muted" *ngIf="trendLoading">Loading…</div>
+    <div class="muted error" *ngIf="trendError">{{ trendError }}</div>
+  </article>
+</section>
+<ng-template #trendsBoot>
+  <ng-container *ngIf="active==='trends' && onEnterTrends()"></ng-container>
+</ng-template>
+      <!-- ============== AI INSIGHTS (your current block) ============== -->
+       <section *ngIf="active==='insights'">
+  <ng-container *ngIf="aiEnabled; else aiOff">
+    <div class="grid">
+          <article class="card span2">
+            <h3 class="h3">AI Summary</h3>
+            <p class="muted" *ngIf="loadingInsights">Loading AI insights…</p>
+            <p class="muted error" *ngIf="insightsError">{{ insightsError }}</p>
+            <p *ngIf="insights && !insightsError">{{ insights?.summary }}</p>
+            <div class="chips" *ngIf="insights">
+              <span [class]="chip(insights?.overallRisk)">Overall {{ insights?.overallRisk }}</span>
+              <span [class]="chip(insights?.respiratoryRisk)">Resp {{ insights?.respiratoryRisk }}</span>
+              <span [class]="chip(insights?.fatigueRisk)">Fatigue {{ insights?.fatigueRisk }}</span>
+              <span [class]="chip(insights?.activityRisk)">Activity {{ insights?.activityRisk }}</span>
+            </div>
+          </article>
+
+          <article class="card" *ngIf="insights">
+            <h3 class="h3">Snapshot</h3>
+            <div class="kv"><span>SpO₂</span><strong>{{ insights?.spo2 ?? '—' }}%</strong></div>
+            <div class="kv"><span>Resp/min</span><strong>{{ insights?.respirationsPerMinute ?? '—' }}</strong></div>
+            <div class="kv"><span>HRV</span><strong>{{ insights?.heartRateVariability ?? '—' }}</strong></div>
+            <div class="kv"><span>Body battery</span><strong>{{ insights?.bodyBattery ?? '—' }}%</strong></div>
+            <div class="kv"><span>Steps</span><strong>{{ insights?.steps ?? '—' }}</strong></div>
+            <div class="updated" *ngIf="insights?.generatedAt">Updated {{ t(insights?.generatedAt) }}</div>
+          </article>
+        </div>
+
+        <div class="insight-row" *ngIf="cards.length">
+          <article *ngFor="let c of cards" class="insight-card" [ngClass]="c.status">
+            <div class="ic-head">
+              <div class="left"><span class="ic-icon">{{ c.icon || '🧠' }}</span>
+                <div><h4>{{ c.title }}</h4><p class="subtitle" *ngIf="c.subtitle">{{ c.subtitle }}</p></div>
+              </div>
+              <div class="right"><span class="time">{{ c.timeframe }}</span></div>
+            </div>
+            <div class="ic-foot"><span class="conf" *ngIf="c.confidence !== undefined">Confidence: <strong>{{ c.confidence }}%</strong></span></div>
+          </article>
+        </div>
+
+        <div class="recs" *ngIf="recs.length">
+          <h3 class="h3">Personalized Recommendations</h3>
+          <article *ngFor="let r of recs" class="rec-card">
+            <div class="rec-head">
+              <div class="left"><span class="rec-icon">🛌</span><h4>{{ r.title }}</h4></div>
+              <span class="conf-badge" *ngIf="r.confidence !== undefined">{{ r.confidence }}% confidence</span>
+            </div>
+            <p class="rationale">{{ r.rationale }}</p>
+            <div class="rec-action">
+              <div class="action-box">
+                <div class="label">Recommended Action</div>
+                <div class="text">{{ r.action }}</div>
+              </div>
+            </div>
+            <div class="rec-foot">
+              <button class="btn subtle" (click)="markFollowed(r)">{{ r.followed ? 'Marked as Followed' : 'Mark as Followed' }}</button>
+              <div class="feedback"><span>Helpful?</span>
+                <button class="icon" [class.active]="r.helpful==='up'" (click)="vote(r,'up')">👍</button>
+                <button class="icon" [class.active]="r.helpful==='down'" (click)="vote(r,'down')">👎</button>
+              </div>
+              <span class="why">{{ r.why || 'Why did I get this?' }}</span>
+            </div>
+          </article>
+        </div>
+  </ng-container>
+  <ng-template #aiOff>
+    <article class="card">
+      <h3>AI Insights are OFF</h3>
+      <p class="muted">
+        Enable them on the <a routerLink="/privacy" [queryParams]="{mode:'consent', redirect:'/dashboard'}">Privacy</a> page to see personalized recommendations.
+      </p>
+    </article>
+  </ng-template>
+</section>
     </div>
   </div>
 </div>

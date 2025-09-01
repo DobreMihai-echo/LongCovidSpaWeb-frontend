@@ -13,6 +13,7 @@ import { PatientDetailsComponent } from './pages/patient-details/patient-details
 import {PatientsTableComponent} from "./pages/patients-table/patients-table.component";
 import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component'
 import { authGuard } from './auth/auth.guard'
+import { PrivacyCenterComponent } from './components/privacy-center/privacy-center.component'
 
 const routes: Routes = [
 	{ path: '', component: LandingPageComponent },
@@ -21,11 +22,12 @@ const routes: Routes = [
 	{ path: 'eu', component: EuPageComponent },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'register', component: RegisterComponent },
-	{ path: 'patients', component: PatientsComponent},
+	{ path: 'patients', component: PatientsComponent, canActivate: [authGuard], data: { roles: ['ROLE_MEDIC']}},
 	{ path: 'patientstable', component: PatientsTableComponent , canActivate: [authGuard], data: { roles: ['ROLE_ADMIN'] }},
 	{ path: 'patient-details', component: PatientDetailsComponent , canActivate: [authGuard], data: { roles: ['ROLE_ADMIN'] }},
 	{ path: 'forbidden', component: ForbiddenComponent},
 	{ path: 'dashboard', component: UserDashboardComponent, canActivate: [authGuard], data: { roles: ['ROLE_USER'] }},
+	{ path: 'privacy', component: PrivacyCenterComponent },
 	{ path: '**', redirectTo: '', component: PageNotFoundComponent }
 ]
 
