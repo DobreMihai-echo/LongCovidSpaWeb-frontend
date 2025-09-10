@@ -32,7 +32,7 @@ const routes: Routes = [
 	{ path: 'forbidden', component: ForbiddenComponent},
 	{ path: 'dashboard', component: UserDashboardComponent, canActivate: [authGuard], data: { roles: ['ROLE_USER'] }},
 	{ path: 'privacy', component: PrivacyCenterComponent },
-	{ path: 'medic/apply', component: MedicApplyComponent, canActivate:[authGuard], data:{ roles:['ROLE_USER','ROLE_MEDIC','ROLE_ADMIN'] } },
+	{ path: 'medic/apply', component: MedicApplyComponent, canActivate:[authGuard], data:{ roles:['ROLE_USER'] } },
     { path: 'medic/verify-email', component: MedicEmailVerifiedComponent }, // simple thank-you page
     { path: 'medic/patients', component: MedicPatientsComponent, canActivate:[authGuard], data:{ roles:['ROLE_MEDIC'] } },
 	{ path: 'medic/verify-email', component: MedicEmailVerifiedComponent },
