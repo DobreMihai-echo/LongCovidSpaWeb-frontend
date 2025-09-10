@@ -1,0 +1,24 @@
+<app-navbar></app-navbar>
+<div class="shell">
+  <div class="card">
+    <h2>Apply as Medic</h2>
+    <p class="muted">Provide your license details and work email. We’ll verify your email and an admin will review your application.</p>
+
+    <label>License Number</label>
+    <input [(ngModel)]="licenseNumber" type="text" class="input" />
+
+    <label>License Issuer (e.g., Romania College of Physicians)</label>
+    <input [(ngModel)]="issuer" type="text" class="input" />
+
+    <label>Work Email</label>
+    <input [(ngModel)]="workEmail" type="email" class="input" />
+
+    <button class="btn" [disabled]="sending" (click)="submit()">
+      {{ sending ? 'Submitting…' : 'Submit Application' }}
+    </button>
+
+    <p class="warn" *ngIf="emailDomainInvalid">For now we only accept <b>@yahoo.com</b> addresses.</p>
+    <p class="ok" *ngIf="statusMsg">{{ statusMsg }}</p>
+    <p class="err" *ngIf="errorMsg">{{ errorMsg }}</p>
+  </div>
+</div>

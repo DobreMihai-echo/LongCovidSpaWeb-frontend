@@ -1,0 +1,8 @@
+.shell { max-width: 720px; margin: 90px auto 40px; padding: 0 16px; }
+.card { background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:16px; color:#fff; }
+.muted { color:#cdd2de; margin-bottom:12px; }
+label { display:block; margin-top:10px; color:#e9ecff; font-weight:700; }
+.input { width:100%; padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,.2); background:rgba(0,0,0,.2); color:#fff; }
+.btn { margin-top:14px; padding:10px 14px; border-radius:8px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.08); color:#fff; }
+.ok { color:#22c55e; }
+.err { color:#fca5a5; }
