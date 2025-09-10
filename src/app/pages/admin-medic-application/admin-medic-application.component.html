@@ -1,0 +1,213 @@
+<app-navbar></app-navbar>
+
+<div class="admin-shell">
+  <header class="topbar">
+    <h1>Medic Applications</h1>
+
+    <div class="segmented">
+      <button class="seg-btn" [class.active]="status==='PENDING'"  (click)="status='PENDING';  load()">Pending</button>
+      <button class="seg-btn" [class.active]="status==='APPROVED'" (click)="status='APPROVED'; load()">Approved</button>
+      <button class="seg-btn" [class.active]="status==='REJECTED'" (click)="status='REJECTED'; load()">Rejected</button>
+    </div>
+  </header>
+
+  <div class="card">
+    <div *ngIf="loading" class="loading">Loading…</div>
+    <div *ngIf="error" class="err">{{ error }}</div>
+
+    <div class="table-wrap" *ngIf="page">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>User</th>
+            <th>Work Email</th>
+            <th>License</th>
+            <th>Issuer</th>
+            <th>Email Verified</th>
+            <th>Submitted</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let app of page.content; trackBy: trackById"
+            (click)="open(app)"
+            class="rowclick"
+            tabindex="0"
+            (keyup.enter)="open(app)">
+            <td>#{{ app.id }}</td>
+            <td>#{{ app.userId }}</td>
+            <td class="ellipsis">{{ app.workEmail }}</td>
+            <td>{{ app.licenseNumber }}</td>
+            <td class="ellipsis">{{ app.licenseIssuer }}</td>
+            <td>
+              <span class="pill" [class.ok]="app.emailVerified" [class.bad]="!app.emailVerified">
+                {{ app.emailVerified ? 'Yes' : 'No' }}
+              </span>
+            </td>
+            <td>{{ app.submittedAt | date:'short' }}</td>
+            <td>
+              <span class="pill"
+                [class.pending]="app.status==='PENDING'"
+                [class.ok]="app.status==='APPROVED'"
+                [class.bad]="app.status==='REJECTED'">
+                {{ app.status }}
+              </span>
+            </td>
+          </tr>
+
+          <tr *ngIf="!page.content.length">
+            <td class="empty" colspan="8">No applications found</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pager" *ngIf="page && page.totalPages>1">
+      <button class="btn" (click)="load(page.number-1)" [disabled]="page.number===0">Prev</button>
+      <span>Page {{ page.number+1 }} / {{ page.totalPages }}</span>
+      <button class="btn" (click)="load(page.number+1)" [disabled]="page.number+1>=page.totalPages">Next</button>
+    </div>
+  </div>
+</div>
+
+<!-- CENTERED MODAL (fixed z-index, backdrop below modal) -->
+<div class="modal-wrap" *ngIf="selected">
+  <div class="modal-backdrop" (click)="close()"></div>
+
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="appTitle" (click)="$event.stopPropagation()">
+    <header class="modal__header">
+      <h2 id="appTitle">Application #{{ selected.id }}</h2>
+      <button class="icon-btn" aria-label="Close" (click)="close()">✕</button>
+    </header>
+
+    <section class="modal__body">
+      <div class="details-grid">
+        <div class="kv"><span>User ID</span><strong>#{{ selected.userId }}</strong></div>
+        <div class="kv"><span>Work Email</span><strong class="mono">{{ selected.workEmail }}</strong></div>
+        <div class="kv"><span>License</span><strong>{{ selected.licenseNumber }}</strong></div>
+        <div class="kv"><span>Issuer</span><strong>{{ selected.licenseIssuer }}</strong></div>
+        <div class="kv">
+          <span>Email Verified</span>
+          <strong [class.ok]="selected.emailVerified" [class.bad]="!selected.emailVerified">
+            {{ selected.emailVerified ? 'Yes' : 'No' }}
+          </strong>
+        </div>
+        <div class="kv"><span>Submitted</span><strong>{{ selected.submittedAt | date:'short' }}</strong></div>
+        <div class="kv" *ngIf="selected.reviewedAt"><span>Reviewed</span><strong>{{ selected.reviewedAt | date:'short' }}</strong></div>
+        <div class="kv"><span>Status</span>
+          <strong class="pill"
+            [class.pending]="selected.status==='PENDING'"
+            [class.ok]="selected.status==='APPROVED'"
+            [class.bad]="selected.status==='REJECTED'">
+            {{ selected.status }}
+          </strong>
+        </div>
+      </div>
+
+      <div class="docs" *ngIf="selected.docUrls?.length">
+        <h3>Documents</h3>
+        <ul class="doc-list">
+          <li *ngFor="let url of selected.docUrls">
+            <a [href]="url" target="_blank" rel="noopener" class="doc-chip">Open</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="note ok" *ngIf="selected.status==='APPROVED'">
+        Approved — user now has medic access.
+      </div>
+      <div class="note bad" *ngIf="selected.status==='REJECTED'">
+        Rejected: {{ selected.rejectReason }}
+      </div>
+
+      <div class="assign-block" *ngIf="selected?.status==='APPROVED'">
+  <h3 class="assign-title">Patients</h3>
+
+  <div class="assign-grid">
+  <!-- Search & assign -->
+  <div class="pane">
+    <div class="pane-header">
+      <span class="hdr">Patients</span>
+      <span class="count" *ngIf="searchPage">({{ searchPage.totalElements }})</span>
+      <span class="spacer"></span>
+      <input class="input" [(ngModel)]="patientQuery" (keyup.enter)="searchPatients(0)" placeholder="Search by name or email">
+      <button class="btn btn-primary" (click)="searchPatients(0)">Search</button>
+    </div>
+
+    <ul class="list">
+      <li *ngFor="let p of searchPage?.content; trackBy: trackByUserId" class="row">
+        <div class="info">
+          <div class="name">{{ p.firstName }} {{ p.lastName }}</div>
+          <div class="sub mono">{{ p.email }}</div>
+        </div>
+
+        <button
+          class="btn"
+          [ngClass]="{ 'btn-success': !isAssigned(p.id), 'btn-disabled': isAssigned(p.id) }"
+          [disabled]="isAssigned(p.id) || assigningId===p.id"
+          (click)="assign(p.id, $event)">
+          <ng-container *ngIf="assigningId===p.id; else assignLbl">Assigning…</ng-container>
+          <ng-template #assignLbl>{{ isAssigned(p.id) ? 'Assigned' : 'Assign' }}</ng-template>
+        </button>
+      </li>
+
+      <li *ngIf="searchPage && searchPage.content.length===0" class="empty">No results</li>
+    </ul>
+
+    <div class="pager" *ngIf="searchPage && searchPage.totalPages>1">
+      <button class="btn" (click)="searchPatients(searchPage.number-1)" [disabled]="searchPage.number===0">Prev</button>
+      <span>Page {{ searchPage.number+1 }} / {{ searchPage.totalPages }}</span>
+      <button class="btn" (click)="searchPatients(searchPage.number+1)" [disabled]="searchPage.number+1>=searchPage.totalPages">Next</button>
+    </div>
+  </div>
+
+  <!-- Assigned to medic -->
+  <div class="pane">
+    <div class="pane-header">
+      <span class="hdr">Assigned to this medic</span>
+      <span class="count" *ngIf="assignedPage">({{ assignedPage.totalElements }})</span>
+    </div>
+
+    <ul class="list">
+      <li *ngFor="let p of assignedPage?.content; trackBy: trackByUserId" class="row">
+        <div class="info">
+          <div class="name">{{ p.firstName }} {{ p.lastName }}</div>
+          <div class="sub mono">{{ p.email }}</div>
+        </div>
+
+        <button
+          class="btn btn-danger"
+          [disabled]="unassigningId===p.id"
+          (click)="unassign(p.id, $event)">
+          {{ unassigningId===p.id ? 'Removing…' : 'Remove' }}
+        </button>
+      </li>
+
+      <li *ngIf="assignedPage && assignedPage.content.length===0" class="empty">No patients assigned</li>
+    </ul>
+
+    <div class="pager" *ngIf="assignedPage && assignedPage.totalPages>1">
+      <button class="btn" (click)="loadAssigned(assignedPage.number-1)" [disabled]="assignedPage.number===0">Prev</button>
+      <span>Page {{ assignedPage.number+1 }} / {{ assignedPage.totalPages }}</span>
+      <button class="btn" (click)="loadAssigned(assignedPage.number+1)" [disabled]="assignedPage.number+1>=assignedPage.totalPages">Next</button>
+    </div>
+  </div>
+</div>
+</div>
+    </section>
+
+    <footer class="modal__footer" *ngIf="selected.status==='PENDING'">
+      <button class="btn btn-ghost" (click)="close()">Close</button>
+      <span class="spacer"></span>
+      <input class="input" [(ngModel)]="rejectReason" placeholder="Rejection reason…">
+      <button class="btn btn-danger" (click)="reject(selected.id)">Reject</button>
+      <button class="btn btn-success" (click)="approve(selected.id)">Approve</button>
+    </footer>
+
+    <footer class="modal__footer" *ngIf="selected.status!=='PENDING'">
+      <button class="btn btn-primary" (click)="close()">Done</button>
+    </footer>
+  </div>
+</div>

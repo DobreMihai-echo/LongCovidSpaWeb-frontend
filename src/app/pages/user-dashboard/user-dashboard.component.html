@@ -32,12 +32,20 @@
         </article>
 
         <article class="card">
-          <div class="card-head"><span class="icon">💚</span></div>
-          <div class="metric"><span class="num">{{ latest?.heartRateVariability ?? '—' }}</span><span class="unit">bpm</span></div>
-          <div class="label">Heart Rate</div>
-          <p class="hint">Normal heart rate</p>
-          <div class="bar"><span [style.width.%]="progress(latest?.heartRateVariability, 100)"></span></div>
-        </article>
+  <div class="card-head"><span class="icon">💚</span></div>
+  <div class="metric">
+    <span class="num">{{ latest?.heartRateVariability ?? '—' }}</span>
+    <span class="unit">ms</span>
+  </div>
+  <div class="label">HRV</div>
+  <p class="hint" *ngIf="latest?.heartRateVariability != null">
+    {{ latest!.heartRateVariability < 40 ? 'Low recovery' :
+       latest!.heartRateVariability < 60 ? 'Below baseline' : 'Good recovery' }}
+  </p>
+  <p class="hint" *ngIf="latest?.heartRateVariability == null">No HRV data</p>
+  <div class="bar"><span [style.width.%]="progress(latest?.heartRateVariability, 100)"></span></div>
+</article>
+
 
         <article class="card">
           <div class="card-head"><span class="icon">👣</span></div>

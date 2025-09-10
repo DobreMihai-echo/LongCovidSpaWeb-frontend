@@ -31,7 +31,8 @@ import { FormsModule } from '@angular/forms';
 import { PrivacyCenterComponent } from './components/privacy-center/privacy-center.component';
 import { MedicApplyComponent } from './pages/medic-apply/medic-apply.component';
 import { MedicEmailVerifiedComponent } from './pages/medic-email-verified/medic-email-verified.component';
-import { MedicPatientsComponent } from './pages/medic-patients/medic-patients.component'; 
+import { MedicPatientsComponent } from './pages/medic-patients/medic-patients.component';
+import {  AdminMedicApplicationComponent } from './pages/admin-medic-application/admin-medic-application.component'; 
 
 @NgModule({
 	declarations: [
@@ -42,7 +43,7 @@ import { MedicPatientsComponent } from './pages/medic-patients/medic-patients.co
 		AboutPageComponent,
 		PageNotFoundComponent,
   	TechnologyPageComponent,
-  		FooterPageComponent,
+  	FooterPageComponent,
     SnackbarComponent,
     PatientsComponent,
     PatientDetailsComponent,
@@ -53,6 +54,7 @@ import { MedicPatientsComponent } from './pages/medic-patients/medic-patients.co
     MedicApplyComponent,
     MedicEmailVerifiedComponent,
     MedicPatientsComponent,
+    AdminMedicApplicationComponent,
 	],
   imports: [
     BrowserModule,

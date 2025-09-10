@@ -17,6 +17,7 @@ import { PrivacyCenterComponent } from './components/privacy-center/privacy-cent
 import { MedicApplyComponent } from './pages/medic-apply/medic-apply.component'
 import { MedicEmailVerifiedComponent } from './pages/medic-email-verified/medic-email-verified.component'
 import { MedicPatientsComponent } from './pages/medic-patients/medic-patients.component'
+import { AdminMedicApplicationComponent } from './pages/admin-medic-application/admin-medic-application.component'
 
 const routes: Routes = [
 	{ path: '', component: LandingPageComponent },
@@ -35,7 +36,8 @@ const routes: Routes = [
     { path: 'medic/verify-email', component: MedicEmailVerifiedComponent }, // simple thank-you page
     { path: 'medic/patients', component: MedicPatientsComponent, canActivate:[authGuard], data:{ roles:['ROLE_MEDIC'] } },
 	{ path: 'medic/verify-email', component: MedicEmailVerifiedComponent },
-	{ path: '**', redirectTo: '', component: PageNotFoundComponent }
+    { path: 'admin/medics', component:AdminMedicApplicationComponent, canActivate: [authGuard], data: { roles: ['ROLE_ADMIN'] }
+},	{ path: '**', redirectTo: '', component: PageNotFoundComponent }
 ]
 
 @NgModule({

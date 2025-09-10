@@ -65,7 +65,7 @@ export class UserDashboardComponent implements OnInit, OnDestroy {
   private sub: any;
 
   // ===== Tabs =====
-  active: TabKey = 'trends';
+  active: TabKey = 'overview';
   setTab(t: TabKey) {
     // NEW: if AI tab clicked but AI is disabled, just ignore (HTML also disables)
     if (t === 'insights' && !this.aiEnabled) return;
