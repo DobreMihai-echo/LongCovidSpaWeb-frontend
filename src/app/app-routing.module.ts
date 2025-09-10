@@ -14,6 +14,9 @@ import {PatientsTableComponent} from "./pages/patients-table/patients-table.comp
 import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component'
 import { authGuard } from './auth/auth.guard'
 import { PrivacyCenterComponent } from './components/privacy-center/privacy-center.component'
+import { MedicApplyComponent } from './pages/medic-apply/medic-apply.component'
+import { MedicEmailVerifiedComponent } from './pages/medic-email-verified/medic-email-verified.component'
+import { MedicPatientsComponent } from './pages/medic-patients/medic-patients.component'
 
 const routes: Routes = [
 	{ path: '', component: LandingPageComponent },
@@ -28,6 +31,10 @@ const routes: Routes = [
 	{ path: 'forbidden', component: ForbiddenComponent},
 	{ path: 'dashboard', component: UserDashboardComponent, canActivate: [authGuard], data: { roles: ['ROLE_USER'] }},
 	{ path: 'privacy', component: PrivacyCenterComponent },
+	{ path: 'medic/apply', component: MedicApplyComponent, canActivate:[authGuard], data:{ roles:['ROLE_USER','ROLE_MEDIC','ROLE_ADMIN'] } },
+    { path: 'medic/verify-email', component: MedicEmailVerifiedComponent }, // simple thank-you page
+    { path: 'medic/patients', component: MedicPatientsComponent, canActivate:[authGuard], data:{ roles:['ROLE_MEDIC'] } },
+	{ path: 'medic/verify-email', component: MedicEmailVerifiedComponent },
 	{ path: '**', redirectTo: '', component: PageNotFoundComponent }
 ]
 

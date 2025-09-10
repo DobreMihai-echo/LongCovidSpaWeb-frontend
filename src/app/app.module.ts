@@ -28,7 +28,10 @@ import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.co
 import { AuthInterceptor } from './auth/auth.interceptor'
 import { NgChartsModule } from 'ng2-charts';
 import { FormsModule } from '@angular/forms';
-import { PrivacyCenterComponent } from './components/privacy-center/privacy-center.component'; 
+import { PrivacyCenterComponent } from './components/privacy-center/privacy-center.component';
+import { MedicApplyComponent } from './pages/medic-apply/medic-apply.component';
+import { MedicEmailVerifiedComponent } from './pages/medic-email-verified/medic-email-verified.component';
+import { MedicPatientsComponent } from './pages/medic-patients/medic-patients.component'; 
 
 @NgModule({
 	declarations: [
@@ -47,6 +50,9 @@ import { PrivacyCenterComponent } from './components/privacy-center/privacy-cent
     PatientsTableComponent,
     UserDashboardComponent,
     PrivacyCenterComponent,
+    MedicApplyComponent,
+    MedicEmailVerifiedComponent,
+    MedicPatientsComponent,
 	],
   imports: [
     BrowserModule,
