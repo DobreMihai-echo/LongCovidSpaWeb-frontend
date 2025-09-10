@@ -24,6 +24,7 @@ export class NavbarComponent {
 		//{ link: '/patients', name: 'Patients', roles: ['ROLE_MEDIC','ROLE_ADMIN']},
 		//{ link: '/patientstable', name: 'Patientstable', roles: ['ROLE_ADMIN']},
 		{ link: '/admin/medics', name: 'Medics', roles: ['ROLE_ADMIN']},
+		{ link: '/medic/apply', name: 'Apply', roles: ['ROLE_USER']},
 		{ link: '/dashboard', name: 'Dashboard', roles: ['ROLE_USER']}
 	]
 
